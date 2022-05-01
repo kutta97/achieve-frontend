@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import { ProfilePanel } from "../components/ProfilePanel";
 
 const Home: React.FC = () => {
 
@@ -11,7 +12,12 @@ const Home: React.FC = () => {
   
   return (
     <HomeFrameStyled>
-      hello!
+      <div className="homeTop"></div>
+      <div className="homeBodyWrap">
+        <div className="leftPanelWrap">
+          <ProfilePanel nickname="Nickname" description="hello world! from seoul I wanna be an awsome student." friends={friends} groups={groups}/>
+        </div>
+      </div>
     </HomeFrameStyled>
   )
 }
@@ -38,6 +44,8 @@ const HomeFrameStyled = styled.div`
     flex-direction: row;
 
     .leftPanelWrap {
+      position: absolute;
+      top: -37px;
       min-width: 300px;
       height: 100%;
     }
