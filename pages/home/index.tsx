@@ -64,43 +64,43 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="bedgeAchievedWrap">
+          <div className="badgeAchievedWrap">
             <div className="subTitle">
               <SubTitle>RECENT BADGE ACHIEVED!</SubTitle>
               <p>more</p>
             </div>
             <div>
-              <div className="bedgeBoxesWrap">
+              <div className="badgeBoxesWrap">
                 <Badge type="DIAMOND" />
                 <BadgeBox
-                  classNames="bedgeBox"
+                  classNames="badgeBox"
                   badgeTitle="어치브 1개 달성!"
                   description="목표로 한 시험점수 어치브 1개를 달성했어요."
                   date="2022.01.17"
                 />
               </div>
-              <div className="bedgeBoxesWrap">
+              <div className="badgeBoxesWrap">
                 <Badge type="DIAMOND" />
                 <BadgeBox
-                  classNames="bedgeBox"
+                  classNames="badgeBox"
                   badgeTitle="어치브 1개 달성!"
                   description="목표로 한 시험점수 어치브 1개를 달성했어요."
                   date="2022.01.17"
                 />
               </div>
-              <div className="bedgeBoxesWrap">
+              <div className="badgeBoxesWrap">
                 <Badge type="DIAMOND" />
                 <BadgeBox
-                  classNames="bedgeBox"
+                  classNames="badgeBox"
                   badgeTitle="어치브 1개 달성!"
                   description="목표로 한 시험점수 어치브 1개를 달성했어요."
                   date="2022.01.17"
                 />
               </div>
-              <div className="bedgeBoxesWrap">
+              <div className="badgeBoxesWrap">
                 <Badge type="DIAMOND" />
                 <BadgeBox
-                  classNames="bedgeBox"
+                  classNames="badgeBox"
                   badgeTitle="어치브 1개 달성!"
                   description="목표로 한 시험점수 어치브 1개를 달성했어요."
                   date="2022.01.17"
@@ -157,10 +157,10 @@ const HomeFrameStyled = styled.div`
 
       }
 
-      .bedgeAchievedWrap {
+      .badgeAchievedWrap {
         margin-top: 30px;
 
-        .bedgeBoxesWrap {
+        .badgeBoxesWrap {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -168,7 +168,7 @@ const HomeFrameStyled = styled.div`
           margin-bottom: 28px;
         }
 
-        .bedgeBox {
+        .badgeBox {
           margin-left: 35px;
         }
       }
