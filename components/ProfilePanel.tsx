@@ -52,8 +52,8 @@ const ProfilePanelStyled = styled.div`
     height: 100%;
     
     .profileImageWrap {
-        width: 270px;
-        height: 270px;    
+        width: 266px;
+        height: 266px;    
     }
 
     .profileDescriptionWrap {
