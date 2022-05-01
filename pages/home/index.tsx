@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, {useState} from "react";
 import styled from "styled-components";
 import { Badge } from "../../components/Badge";
@@ -16,7 +17,38 @@ const Home: React.FC = () => {
   
   return (
     <HomeFrameStyled>
-      <div className="homeTop"></div>
+      <div className="homeTopWrap">
+        <div className="homeTop">
+          <div className="navBar">
+            <h3 className="navItem">
+              <Link href="/home">
+                <a>OVERVIEW</a>
+              </Link>
+            </h3>
+            <h3 className="navItem">
+              <Link href="/goals">
+                <a>GOALS</a>
+              </Link>
+            </h3>
+            <h3 className="navItem">
+              <Link href="/badges">
+                <a>BADGES</a>
+              </Link>
+            </h3>
+            <h3 className="navItem">
+              <Link href="/friends">
+                <a>FRIENDS</a>
+              </Link>
+            </h3>
+            <h3 className="navItem">
+              <Link href="/groups">
+                <a>GROUPS</a>
+              </Link>
+            </h3>
+          </div>
+        </div>
+      </div>
+
       <div className="homeBodyWrap">
         <div className="leftPanelWrap">
           <ProfilePanel nickname="Nickname" description="hello world! from seoul I wanna be an awsome student." friends={friends} groups={groups}/>
@@ -121,10 +153,35 @@ const HomeFrameStyled = styled.div`
   flex-direction: column;
   position: absolute;
 
-  .homeTop {
+  .homeTopWrap {
+    display: flex;
+    justify-content: center;
     width: 100%;
     min-height: 140px;
     background: #929292;
+
+    .homeTop {
+      display: flex;
+      width: 1370px;
+      height: 100%;
+      flex-direction: row-reverse;
+
+      .navBar {
+        display: flex;
+        flex-direction: row;
+        width: 1020px;
+
+        .navItem {
+          font-size: 24px;
+          font-weight: 500;
+          color: white;
+          margin-left: 0;
+          margin-right: 64px;
+          margin-top: auto;
+          margin-bottom: 8px;
+        }
+      }
+    }
   }
 
   .homeBodyWrap {
@@ -174,6 +231,7 @@ const HomeFrameStyled = styled.div`
       }
 
       .subTitle {
+        font-size: 24px;
         display: flex;
         justify-content: space-between;
       }
