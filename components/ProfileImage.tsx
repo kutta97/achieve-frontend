@@ -5,7 +5,7 @@ interface Props {
     imgSrc?: string;
 }
 
-const ProfileImage: React.FC<Props> = () => {
+export const ProfileImage: React.FC<Props> = () => {
     return (
         <ProfileImageStyled>
 
