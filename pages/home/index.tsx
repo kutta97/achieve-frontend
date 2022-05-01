@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import { ProfilePanel } from "../components/ProfilePanel";
+import { Badge } from "../../components/Badge";
+import { BadgeBox } from "../../components/BadgeBox";
+import { GoalBox } from "../../components/GoalBox";
+import { ProfilePanel } from "../../components/ProfilePanel";
+import { SubTitle } from "../../components/Subtitle";
 
 const Home: React.FC = () => {
 
@@ -16,6 +20,94 @@ const Home: React.FC = () => {
       <div className="homeBodyWrap">
         <div className="leftPanelWrap">
           <ProfilePanel nickname="Nickname" description="hello world! from seoul I wanna be an awsome student." friends={friends} groups={groups}/>
+        </div>
+        <div className="rightContentsWrap">
+
+          <div className="examGoalsWrap">
+            <div className="subTitle">
+              <SubTitle>RECENT EXAM GOALS!</SubTitle>
+              <p>more</p>
+            </div>
+            <div className="goalBoxesWrap">
+               <GoalBox
+                  goalTitle="소프트웨어 공학 B+ 이상 받는다!"
+                  remainDays="D-108"
+                  duration="2022.3.2 ~ 2022.6.21"
+                  states={[
+                      "GROUP", "ACHIEVING..."
+                  ]}
+                />
+                <GoalBox
+                  goalTitle="운전면허시험 합격한다!"
+                  remainDays="D-123"
+                  duration="2022.3.2 ~ 2022.6.21"
+                  states={[
+                      "ACHIEVING..."
+                  ]}
+                />
+                <GoalBox
+                  goalTitle="TOEIC 시험 853점 받았다!"
+                  remainDays="D-186"
+                  duration="2021.9.28 ~ 2021.11.31"
+                  states={[
+                     "ACHIEVING..."
+                  ]}
+                />
+                <GoalBox
+                  goalTitle="정보처리기사 합격했다!"
+                  remainDays="D+218"
+                  duration="2022.3.8 ~ 2022.7.3"
+                  states={[
+                      "GROUP", "ACHIEVING..."
+                  ]}
+                />
+            </div>
+          </div>
+
+          <div className="bedgeAchievedWrap">
+            <div className="subTitle">
+              <SubTitle>RECENT BADGE ACHIEVED!</SubTitle>
+              <p>more</p>
+            </div>
+            <div>
+              <div className="bedgeBoxesWrap">
+                <Badge type="DIAMOND" />
+                <BadgeBox
+                  classNames="bedgeBox"
+                  badgeTitle="어치브 1개 달성!"
+                  description="목표로 한 시험점수 어치브 1개를 달성했어요."
+                  date="2022.01.17"
+                />
+              </div>
+              <div className="bedgeBoxesWrap">
+                <Badge type="DIAMOND" />
+                <BadgeBox
+                  classNames="bedgeBox"
+                  badgeTitle="어치브 1개 달성!"
+                  description="목표로 한 시험점수 어치브 1개를 달성했어요."
+                  date="2022.01.17"
+                />
+              </div>
+              <div className="bedgeBoxesWrap">
+                <Badge type="DIAMOND" />
+                <BadgeBox
+                  classNames="bedgeBox"
+                  badgeTitle="어치브 1개 달성!"
+                  description="목표로 한 시험점수 어치브 1개를 달성했어요."
+                  date="2022.01.17"
+                />
+              </div>
+              <div className="bedgeBoxesWrap">
+                <Badge type="DIAMOND" />
+                <BadgeBox
+                  classNames="bedgeBox"
+                  badgeTitle="어치브 1개 달성!"
+                  description="목표로 한 시험점수 어치브 1개를 달성했어요."
+                  date="2022.01.17"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </HomeFrameStyled>
@@ -44,8 +136,6 @@ const HomeFrameStyled = styled.div`
     flex-direction: row;
 
     .leftPanelWrap {
-      position: absolute;
-      top: -37px;
       min-width: 300px;
       height: 100%;
     }
@@ -54,6 +144,8 @@ const HomeFrameStyled = styled.div`
       width: 100%;
       display: flex;
       flex-direction: column;
+      margin-top: 30px;
+      margin-left: 50px;
 
       .examGoalsWrap {
 
@@ -66,6 +158,7 @@ const HomeFrameStyled = styled.div`
       }
 
       .bedgeAchievedWrap {
+        margin-top: 30px;
 
         .bedgeBoxesWrap {
           display: flex;
@@ -76,8 +169,13 @@ const HomeFrameStyled = styled.div`
         }
 
         .bedgeBox {
-          margin-left: 40px;
+          margin-left: 20px;
         }
+      }
+
+      .subTitle {
+        display: flex;
+        justify-content: space-between;
       }
     }
   }
