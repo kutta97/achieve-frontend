@@ -35,7 +35,7 @@ export const ProfilePanel: React.FC<Props> = ({nickname, description, friends, g
 
             <div className="profileGroupsWrap">
                 <h2 className="groupsTitle">GROUPS</h2>
-                <div>
+                <div className="groupNamesWrap">
                     {groups.map((group, index) => (
                         <p className="groupNames" key={index}>{group}</p>
                     ))}
@@ -93,15 +93,20 @@ const ProfilePanelStyled = styled.div`
 
     .profileGroupsWrap {
         margin-top: 36px;
-        
+
         .groupsTitle {
             font-size: 24px;
             margin: 0;
         }
-        .groupNames {
-            font-size: 18px;
-            margin: 0;
-            margin-top: 12px;
+
+        .groupNamesWrap {
+            margin-top: 5px;
+
+            .groupNames {
+                font-size: 18px;
+                margin: 0;
+                margin-top: 12px;
+            }
         }
     }
 `;
