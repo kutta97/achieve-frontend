@@ -169,7 +169,7 @@ const HomeFrameStyled = styled.div`
         }
 
         .bedgeBox {
-          margin-left: 20px;
+          margin-left: 35px;
         }
       }
 

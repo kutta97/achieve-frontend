@@ -13,32 +13,34 @@ export const ProfilePanel: React.FC<Props> = ({nickname, description, friends, g
 
     return (
         <ProfilePanelStyled>
-            <div className="profileImageWrap">
-                <ProfileImage />
-            </div>
-
-            <div className="profileDescriptionWrap">
-                <h1 className="nickname">{nickname}</h1>
-                <p className="description">{description}</p>
-            </div>
-
-            <div className="profileFriendsWrap">
-                <h2 className="friendsTitle">FRIENDS</h2>
-                <div className="friendsWrap">
-                    {friends.map((friend) => (
-                        <div className="friendsProfileImages" key={friend}>
-                            <ProfileImage />       
-                        </div>
-                    ))}
+            <div className="profileWrap">
+                <div className="profileImageWrap">
+                    <ProfileImage />
                 </div>
-            </div>
 
-            <div className="profileGroupsWrap">
-                <h2 className="groupsTitle">GROUPS</h2>
-                <div className="groupNamesWrap">
-                    {groups.map((group, index) => (
-                        <p className="groupNames" key={index}>{group}</p>
-                    ))}
+                <div className="profileDescriptionWrap">
+                    <h1 className="nickname">{nickname}</h1>
+                    <p className="description">{description}</p>
+                </div>
+
+                <div className="profileFriendsWrap">
+                    <h2 className="friendsTitle">FRIENDS</h2>
+                    <div className="friendsWrap">
+                        {friends.map((friend) => (
+                            <div className="friendsProfileImages" key={friend}>
+                                <ProfileImage />       
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="profileGroupsWrap">
+                    <h2 className="groupsTitle">GROUPS</h2>
+                    <div className="groupNamesWrap">
+                        {groups.map((group, index) => (
+                            <p className="groupNames" key={index}>{group}</p>
+                        ))}
+                    </div>
                 </div>
             </div>
         </ProfilePanelStyled>
@@ -47,65 +49,73 @@ export const ProfilePanel: React.FC<Props> = ({nickname, description, friends, g
 
 const ProfilePanelStyled = styled.div`
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 100%;
     height: 100%;
     
-    .profileImageWrap {
-        width: 266px;
-        height: 266px;    
-    }
+    .profileWrap {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: -37px;
 
-    .profileDescriptionWrap {
-
-        .nickname {
-            font-size: 36px;
-            margin: 0;
-            margin-top: 40px;
+        .profileImageWrap {
+            width: 266px;
+            height: 266px;
         }
-        .description {
-            font-size: 18px;
-            margin: 0;
-            margin-top: 17px;
-        }
-    }
-
-    .profileFriendsWrap {
-        margin-top: 50px;
-
-        .friendsTitle {
-            font-size: 24px;
-            margin: 0;
-        }
-        .friendsWrap {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            margin-top: 17px;
         
-            .friendsProfileImages {
-                width: 50px;
-                height: 50px;
-                gap: 10px;
+        .profileDescriptionWrap {
+
+            .nickname {
+                font-size: 36px;
+                margin: 0;
+                margin-top: 40px;
             }
-        }
-    }
-
-    .profileGroupsWrap {
-        margin-top: 36px;
-
-        .groupsTitle {
-            font-size: 24px;
-            margin: 0;
-        }
-
-        .groupNamesWrap {
-            margin-top: 5px;
-
-            .groupNames {
+            .description {
                 font-size: 18px;
                 margin: 0;
-                margin-top: 12px;
+                margin-top: 17px;
+            }
+        }
+
+        .profileFriendsWrap {
+            margin-top: 50px;
+
+            .friendsTitle {
+                font-size: 24px;
+                margin: 0;
+            }
+            .friendsWrap {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 17px;
+            
+                .friendsProfileImages {
+                    width: 50px;
+                    height: 50px;
+                    gap: 10px;
+                }
+            }
+        }
+
+        .profileGroupsWrap {
+            margin-top: 36px;
+
+            .groupsTitle {
+                font-size: 24px;
+                margin: 0;
+            }
+
+            .groupNamesWrap {
+                margin-top: 5px;
+
+                .groupNames {
+                    font-size: 18px;
+                    margin: 0;
+                    margin-top: 12px;
+                }
             }
         }
     }
