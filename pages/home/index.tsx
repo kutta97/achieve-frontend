@@ -1,57 +1,26 @@
-import Link from "next/link";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Badge } from "../../components/Badge";
 import { BadgeBox } from "../../components/BadgeBox";
 import { GoalBox } from "../../components/GoalBox";
-import { ProfilePanel } from "../../components/ProfilePanel";
+import { Header } from "../../components/header/Header";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 import { SubTitle } from "../../components/Subtitle";
 
 const Home: React.FC = () => {
 
-  const [friends] = useState(['1', '2', '3', '4'])
+  const [friends] = useState(['1', '2', '3', '4', '5'])
   const [groups] = useState([
-      '컴공 3학년 올 A+모임',
-      '토익 800점 이상 스터디'
+    '컴공 3학년 올 A+모임',
+    '토익 800점 이상 스터디'
   ])
-  
+
   return (
     <HomeFrameStyled>
-      <div className="homeTopWrap">
-        <div className="homeTop">
-          <div className="navBar">
-            <h3 className="navItem">
-              <Link href="/home">
-                <a>OVERVIEW</a>
-              </Link>
-            </h3>
-            <h3 className="navItem">
-              <Link href="/goals">
-                <a>GOALS</a>
-              </Link>
-            </h3>
-            <h3 className="navItem">
-              <Link href="/badges">
-                <a>BADGES</a>
-              </Link>
-            </h3>
-            <h3 className="navItem">
-              <Link href="/friends">
-                <a>FRIENDS</a>
-              </Link>
-            </h3>
-            <h3 className="navItem">
-              <Link href="/groups">
-                <a>GROUPS</a>
-              </Link>
-            </h3>
-          </div>
-        </div>
-      </div>
-
+      <Header className="header" selected="OVERVIEW" />
       <div className="homeBodyWrap">
-        <div className="leftPanelWrap">
-          <ProfilePanel nickname="Nickname" description="hello world! from seoul I wanna be an awsome student." friends={friends} groups={groups}/>
+        <div className="sidebar">
+          <Sidebar nickname="Nickname" profileImage="null" description="hello world! from seoul I wanna be an awsome student." friends={friends} groups={groups} />
         </div>
         <div className="rightContentsWrap">
 
@@ -61,38 +30,38 @@ const Home: React.FC = () => {
               <p>more</p>
             </div>
             <div className="goalBoxesWrap">
-               <GoalBox
-                  goalTitle="소프트웨어 공학 B+ 이상 받는다!"
-                  remainDays="D-108"
-                  duration="2022.3.2 ~ 2022.6.21"
-                  states={[
-                      "GROUP", "ACHIEVING..."
-                  ]}
-                />
-                <GoalBox
-                  goalTitle="운전면허시험 합격한다!"
-                  remainDays="D-123"
-                  duration="2022.3.2 ~ 2022.6.21"
-                  states={[
-                      "ACHIEVING..."
-                  ]}
-                />
-                <GoalBox
-                  goalTitle="TOEIC 시험 853점 받았다!"
-                  remainDays="D-186"
-                  duration="2021.9.28 ~ 2021.11.31"
-                  states={[
-                     "ACHIEVING..."
-                  ]}
-                />
-                <GoalBox
-                  goalTitle="정보처리기사 합격했다!"
-                  remainDays="D+218"
-                  duration="2022.3.8 ~ 2022.7.3"
-                  states={[
-                      "GROUP", "ACHIEVING..."
-                  ]}
-                />
+              <GoalBox
+                goalTitle="소프트웨어 공학 B+ 이상 받는다!"
+                remainDays="D-108"
+                duration="2022.3.2 ~ 2022.6.21"
+                states={[
+                  "GROUP", "ACHIEVING..."
+                ]}
+              />
+              <GoalBox
+                goalTitle="운전면허시험 합격한다!"
+                remainDays="D-123"
+                duration="2022.3.2 ~ 2022.6.21"
+                states={[
+                  "ACHIEVING..."
+                ]}
+              />
+              <GoalBox
+                goalTitle="TOEIC 시험 853점 받았다!"
+                remainDays="D-186"
+                duration="2021.9.28 ~ 2021.11.31"
+                states={[
+                  "ACHIEVING..."
+                ]}
+              />
+              <GoalBox
+                goalTitle="정보처리기사 합격했다!"
+                remainDays="D+218"
+                duration="2022.3.8 ~ 2022.7.3"
+                states={[
+                  "GROUP", "ACHIEVING..."
+                ]}
+              />
             </div>
           </div>
 
@@ -153,48 +122,23 @@ const HomeFrameStyled = styled.div`
   flex-direction: column;
   position: absolute;
 
-  .homeTopWrap {
-    display: flex;
-    justify-content: center;
+  .header {
     width: 100%;
-    min-height: 140px;
-    background: #929292;
-
-    .homeTop {
-      display: flex;
-      width: 1370px;
-      height: 100%;
-      flex-direction: row-reverse;
-
-      .navBar {
-        display: flex;
-        flex-direction: row;
-        width: 1020px;
-
-        .navItem {
-          font-size: 24px;
-          font-weight: 500;
-          color: white;
-          margin-left: 0;
-          margin-right: 64px;
-          margin-top: auto;
-          margin-bottom: 8px;
-        }
-      }
-    }
+    min-height: 120px;
   }
 
   .homeBodyWrap {
     position: relative;
-    width: 1370px;
+    width: 1080px;
     height: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
 
-    .leftPanelWrap {
-      min-width: 300px;
+    .sidebar {
+      min-width: 230px;
       height: 100%;
+      margin-left: 20px;
     }
 
     .rightContentsWrap {
@@ -202,7 +146,8 @@ const HomeFrameStyled = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 30px;
-      margin-left: 50px;
+      margin-left: 40px;
+      margin-right: 20px;
 
       .examGoalsWrap {
 
@@ -231,9 +176,15 @@ const HomeFrameStyled = styled.div`
       }
 
       .subTitle {
-        font-size: 24px;
         display: flex;
         justify-content: space-between;
+        font-size: 18px;
+
+        p {
+          margin-top: auto;
+          margin-bottom: auto;
+          font-size: 15px;
+        }
       }
     }
   }
