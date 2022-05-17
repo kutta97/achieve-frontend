@@ -25,12 +25,12 @@ const HeaderStyled = styled.div`
   .navBarWrap {
     display: flex;
     flex-direction: row-reverse;
-    width: 1080px;
+    width: 1366px;
 
     .navBar {
       display: flex;
       flex-direction: row;
-      width: 790px;
+      width: calc(100% - 230px - 10% - 40px - 15px);
     }
   }
 `;

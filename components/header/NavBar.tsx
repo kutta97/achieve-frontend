@@ -33,16 +33,15 @@ export const NavBar: React.FC<Props> = ({ className, selected }) => {
 
 	return (
 		<NavBarStyled className={className}>
-			{navLinks.map((navLink) => {
-				return (
-					<NavItem
-						className="navItem"
-						link={navLink.link}
-						selected={(selected === navLink.name) ? true : false}
-						key={navLink.name}
-					>{navLink.name}</NavItem>
-				)
-			})}
+			{navLinks.map((navLink) => (
+				<NavItem
+					className="navItem"
+					link={navLink.link}
+					selected={(selected === navLink.name) ? true : false}
+					key={navLink.name}
+				>{navLink.name}</NavItem>
+			)
+			)}
 		</NavBarStyled>
 	);
 }

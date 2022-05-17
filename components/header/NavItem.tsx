@@ -21,7 +21,7 @@ export const NavItem: React.FC<Props> = ({ className, link, children, selected }
 
 const NavItemStyled = styled.h3 <{ selected: boolean }> `
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold;
   padding: 7px 15px 3px 15px;
   color: ${props => (
     props.selected ? `black;` : `white;`

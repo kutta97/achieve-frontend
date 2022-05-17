@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { SubTitle } from "../Subtitle";
 
 interface Props {
   className?: string;
@@ -9,7 +10,7 @@ interface Props {
 export const ProfileGroups: React.FC<Props> = ({ className, groups }) => {
   return (
     <ProfileGroupsStyled className={className}>
-      <h2 className="groupsTitle">GROUPS</h2>
+      <SubTitle className="title">GROUPS</SubTitle>
       <div className="groupNamesWrap">
         {groups.map((group, index) => (
           <p className="groupNames" key={index}>{group}</p>
@@ -20,13 +21,11 @@ export const ProfileGroups: React.FC<Props> = ({ className, groups }) => {
 }
 
 const ProfileGroupsStyled = styled.div`
-  .groupsTitle {
-    font-size: 18px;
-    margin: 0;
+  .title {
+    margin-bottom: 13px;
   }
 
   .groupNamesWrap {
-    margin-top: 7px;
 
     .groupNames {
       font-size: 15px;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { SubTitle } from "../Subtitle";
 import { ProfileImage } from "./ProfileImage";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 export const ProfileFriends: React.FC<Props> = ({ className, friends }) => {
   return (
     <ProfileFriendsStyled className={className}>
-      <h2 className="friendsTitle">FRIENDS</h2>
+      <SubTitle className="title">FRIENDS</SubTitle>
       <div className="friendsWrap">
         {friends.map((friend) => (
           <div className="friendsProfileImages" key={friend}>
@@ -23,15 +24,14 @@ export const ProfileFriends: React.FC<Props> = ({ className, friends }) => {
 }
 
 const ProfileFriendsStyled = styled.div`
-  .friendsTitle {
-    font-size: 18px;
-    margin: 0;
+  .title {
+    margin-bottom: 13px;
   }
+
   .friendsWrap {
     display: flex;
     flex-direction: row;
     gap: 5px;
-    margin-top: 17px;
 
     .friendsProfileImages {
       width: 41px;
