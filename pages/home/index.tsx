@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Badge } from "../../components/recentBadges/Badge";
-import { BadgeBox } from "../../components/recentBadges/BadgeBox";
 import { Header } from "../../components/header/Header";
 import { RecentGoals } from "../../components/recentGoals/RecentGoals";
 import { Sidebar } from "../../components/sidebar/Sidebar";
-import { SubTitle } from "../../components/Subtitle/Subtitle";
 import { RecentBadges } from "../../components/recentBadges/RecentBadges";
 
 const Home: React.FC = () => {

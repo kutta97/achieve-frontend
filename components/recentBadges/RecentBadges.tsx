@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SubTitleWithMore } from "../SubtitleWithMore";
+import { SubTitleWithMore } from "../subtitle/SubtitleWithMore";
 import { Badge } from "./Badge";
 import { BadgeBox } from "./BadgeBox";
 

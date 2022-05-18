@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GoalBox } from "./GoalBox";
-import { SubTitleWithMore } from "../SubtitleWithMore";
+import { SubTitleWithMore } from "../subtitle/SubtitleWithMore";
 
 interface Props {
   className?: string;
