@@ -3,47 +3,47 @@ import styled from "styled-components";
 import { NavItem } from "./NavItem";
 
 interface Props {
-	className?: string;
-	selected?: string;
+  className?: string;
+  selected?: string;
 }
 
 export const NavBar: React.FC<Props> = ({ className, selected }) => {
-	const navLinks = [
-		{
-			name: "OVERVIEW",
-			link: "/home",
-		},
-		{
-			name: "GOALS",
-			link: "/goals",
-		},
-		{
-			name: "BADGES",
-			link: "/badges",
-		},
-		{
-			name: "FRIENDS",
-			link: "/friends",
-		},
-		{
-			name: "GROUPS",
-			link: "/groups",
-		},
-	];
+  const navLinks = [
+    {
+      name: "OVERVIEW",
+      link: "/home",
+    },
+    {
+      name: "GOALS",
+      link: "/goals",
+    },
+    {
+      name: "BADGES",
+      link: "/badges",
+    },
+    {
+      name: "FRIENDS",
+      link: "/friends",
+    },
+    {
+      name: "GROUPS",
+      link: "/groups",
+    },
+  ];
 
-	return (
-		<NavBarStyled className={className}>
-			{navLinks.map((navLink) => (
-				<NavItem
-					className="navItem"
-					link={navLink.link}
-					selected={(selected === navLink.name) ? true : false}
-					key={navLink.name}
-				>{navLink.name}</NavItem>
-			)
-			)}
-		</NavBarStyled>
-	);
+  return (
+    <NavBarStyled className={className}>
+      {navLinks.map((navLink) => (
+        <NavItem
+          className="navItem"
+          link={navLink.link}
+          selected={(selected === navLink.name) ? true : false}
+          key={navLink.name}
+        >{navLink.name}</NavItem>
+      )
+      )}
+    </NavBarStyled>
+  );
 }
 
 const NavBarStyled = styled.div`
