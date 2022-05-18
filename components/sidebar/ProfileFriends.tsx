@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SubTitle } from "../Subtitle";
+import { SubTitle } from "../Subtitle/Subtitle";
 import { ProfileImage } from "./ProfileImage";
 
 interface Props {
