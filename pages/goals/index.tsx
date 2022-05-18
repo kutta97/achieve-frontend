@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Header } from "../../components/header/Header";
 import { Sidebar } from "../../components/sidebar/Sidebar";
+import { SubTitleWithButton } from "../../components/subtitle/SubtitleWithButton";
 
 const Goals: React.FC = () => {
 
@@ -21,6 +22,9 @@ const Goals: React.FC = () => {
         </div>
 
         <div className="contentsWrap">
+          <SubTitleWithButton buttonName="CREATE NEW GOAL">
+            YOU HAVE 5 EXAM GOALS!
+          </SubTitleWithButton>
         </div>
 
       </div>
@@ -59,7 +63,7 @@ const GoalsFrameStyled = styled.div`
       width: 100%;
       display: flex;
       flex-direction: column;
-      margin-top: 40px;
+      margin-top: 50px;
       margin-left: 40px;
 
     }

@@ -8,20 +8,20 @@ interface Props {
   date: string;
 }
 
-export const BadgeBox: React.FC<Props> = ({ badgeTitle, description, date, className = '' }) => {
+export const RecentBadgeBox: React.FC<Props> = ({ badgeTitle, description, date, className = '' }) => {
 
   return (
-    <BadgeBoxTitleStyled className={className}>
+    <RecentBadgeBoxStyled className={className}>
       <h2 className="title">{badgeTitle}</h2>
       <div className="description">
         <p>{description}</p>
         <p>받은 날짜 : {date}</p>
       </div>
-    </BadgeBoxTitleStyled>
+    </RecentBadgeBoxStyled>
   )
 }
 
-const BadgeBoxTitleStyled = styled.div`
+const RecentBadgeBoxStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

@@ -9,10 +9,10 @@ interface Props {
   states: string[];
 }
 
-export const GoalBox: React.FC<Props> = ({ goalTitle, remainDays, duration, classNames = '', states }) => {
+export const RecentGoalBox: React.FC<Props> = ({ goalTitle, remainDays, duration, classNames = '', states }) => {
 
   return (
-    <GoalBoxTitleStyled className={classNames}>
+    <RecentGoalBoxStyled className={classNames}>
       <div className="titleWrap">
         <div className="titleLeftWrap">
           <div className="bullet" />
@@ -30,11 +30,11 @@ export const GoalBox: React.FC<Props> = ({ goalTitle, remainDays, duration, clas
           ))}
         </div>
       </div>
-    </GoalBoxTitleStyled>
+    </RecentGoalBoxStyled>
   )
 }
 
-const GoalBoxTitleStyled = styled.div`
+const RecentGoalBoxStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

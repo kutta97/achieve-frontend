@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { GoalBox } from "./GoalBox";
+import { RecentGoalBox } from "./RecentGoalBox";
 import { SubTitleWithMore } from "../subtitle/SubtitleWithMore";
 
 interface Props {
@@ -47,7 +47,7 @@ export const RecentGoals: React.FC<Props> = ({ className }) => {
 
       <div className="goalBoxesWrap">
         {recentGoals.map((recentGoal) => (
-          <GoalBox
+          <RecentGoalBox
             goalTitle={recentGoal.title}
             remainDays={recentGoal.remainDays}
             duration={recentGoal.duration}

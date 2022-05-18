@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SubTitleWithMore } from "../subtitle/SubtitleWithMore";
 import { Badge } from "./Badge";
-import { BadgeBox } from "./BadgeBox";
+import { RecentBadgeBox } from "./RecentBadgeBox";
 
 interface Props {
   className?: string;
@@ -50,7 +50,7 @@ export const RecentBadges: React.FC<Props> = ({ className }) => {
         {recentBages.map((recentBage) => (
           <div className="badgeBoxWrap" key={recentBage.id}>
             <Badge type={recentBage.type} />
-            <BadgeBox
+            <RecentBadgeBox
               className="badgeBox"
               badgeTitle={recentBage.title}
               description={recentBage.description}
