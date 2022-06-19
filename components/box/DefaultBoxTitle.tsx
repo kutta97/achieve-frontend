@@ -10,7 +10,7 @@ export const DefaultBoxTitle: React.FC<Props> = ({ classNames, title }) => {
   return (
     <DefaultBoxTitleStyled className={classNames}>
       <div className="bullet" />
-      <h1 className="title">{title}</h1>
+      <h1 className="boxTitle">{title}</h1>
     </DefaultBoxTitleStyled>
   );
 }
@@ -27,7 +27,7 @@ const DefaultBoxTitleStyled = styled.div`
     background: #C4C4C4;
   }
 
-  .title {
+  .boxTitle {
     font-size: 15px;
     margin-left: 9px;
     margin-top: auto;

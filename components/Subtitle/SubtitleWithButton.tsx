@@ -19,7 +19,7 @@ export const SubTitleWithButton: React.FC<Props> = ({ className, children, butto
     <SubTitleWithButtonStyled className={className}>
       <SubTitle className="title">{children}</SubTitle>
       <button
-        className="button"
+        className="subTitleButton"
         onClick={handleClick}
       >
         {buttonName}
@@ -38,7 +38,7 @@ const SubTitleWithButtonStyled = styled.div`
     margin-bottom: auto;
   }
 
-  .button {
+  .subTitleButton {
     font-size: 15px;
     font-weight: bold;
     padding: 5px 20px;

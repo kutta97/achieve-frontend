@@ -16,8 +16,15 @@ export const ExamGoals: React.FC<Props> = observer(({ className, examGoals }) =>
   const [isInputFormVisible, setIsInputFormVisible] = useState(false);
 
   const handleCreateGoalClick = () => {
-    console.log("isInputFormVisible", isInputFormVisible);
-    setIsInputFormVisible(!isInputFormVisible);
+    setIsInputFormVisible(true);
+  }
+
+  const handleCreateClick = () => {
+
+  }
+
+  const handleCloseClick = () => {
+    setIsInputFormVisible(false);
   }
 
   return (
@@ -30,7 +37,11 @@ export const ExamGoals: React.FC<Props> = observer(({ className, examGoals }) =>
         {`YOU HAVE ${examGoals.length} EXAM GOALS!`}
       </SubTitleWithButton>
 
-      {isInputFormVisible && <ExamGoalInputBox />}
+      {isInputFormVisible &&
+        <ExamGoalInputBox
+          onCreateClick={handleCreateClick}
+          onCloseClick={handleCloseClick}
+        />}
 
       <div className="goalBoxesWrap">
         {examGoals.map((examGoal) => (

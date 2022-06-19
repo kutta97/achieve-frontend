@@ -5,22 +5,32 @@ import { DefaultBox } from "../box/DefaultBox";
 interface Props {
   classNames?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onCreateClick?: () => void;
+  onCloseClick?: () => void;
 }
 
-export const InputBox: React.FC<Props> = ({ classNames, children, onClick }) => {
+export const InputBox: React.FC<Props> = ({ classNames, children, onCreateClick, onCloseClick }) => {
 
-  const handleClick = () => {
-    onClick?.();
+  const handleCreateClick = () => {
+    onCreateClick?.();
+  }
+
+  const handleCloseClick = () => {
+    onCloseClick?.();
   }
 
   return (
     <InputBoxStyled className={classNames}>
       <DefaultBox>
+        <button
+          className="closeButton"
+          onClick={handleCloseClick}
+        >
+        </button>
         {children}
         <button
-          className="button"
-          onClick={handleClick}
+          className="createButton"
+          onClick={handleCreateClick}
         >
           create
         </button>
@@ -33,7 +43,35 @@ const InputBoxStyled = styled.div`
   display: flex;
   flex-direction: column;
 
-  .button {
+  .closeButton{
+    width:20px;
+    height:20px;
+    position:relative;
+    text-indent:-9999px;
+    border: none;
+    background-color:transparent;
+    margin-left: auto;
+    cursor: pointer;
+    
+    &:before,&:after{
+    content:'';
+    width:25px;
+    height:1px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    border-radius:4px;
+    background:#000
+  }
+  &:before{
+    transform:translate(-50%,-50%) rotate(-45deg)
+  }
+  &:after{
+    transform:translate(-50%,-50%) rotate(45deg)
+  }
+  }
+
+  .createButton {
     margin-left: auto;
     font-size: 15px;
     font-weight: bold;
