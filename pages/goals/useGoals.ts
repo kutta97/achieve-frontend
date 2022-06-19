@@ -11,5 +11,9 @@ export const useGoals = () => {
     setExamGoals(goalStore.examGoals);
   }, goalStore.examGoals)
 
-  return {examGoals};
+  const addExamGoal = (exmaGoal: ExamGoalVO) => {
+    goalStore.addExamGoal(exmaGoal);
+  }
+
+  return {examGoals, addExamGoal};
 }

@@ -36,6 +36,7 @@ export class GoalStore {
     makeObservable(this, {
       examGoals: observable,
       getExamGoals: action,
+      addExamGoal:action,
     })
 
     this.getExamGoals();
@@ -43,6 +44,10 @@ export class GoalStore {
 
   async getExamGoals() {
     this.examGoals = this.toVO(null);
+  }
+
+  async addExamGoal(exmaGoal: ExamGoalVO) {
+    this.examGoals = [exmaGoal, ...this.examGoals];
   }
 
   toVO(res?: any): ExamGoalVO[] {

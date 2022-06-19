@@ -6,11 +6,11 @@ import { useGoals } from "./useGoals";
 
 const Goals: React.FC = observer(() => {
 
-  const { examGoals } = useGoals();
+  const { examGoals, addExamGoal } = useGoals();
 
   return (
     <GoalsFrameStyled>
-      <ExamGoals examGoals={examGoals} />
+      <ExamGoals examGoals={examGoals} onCreateGoal={addExamGoal} />
     </GoalsFrameStyled>
   )
 });

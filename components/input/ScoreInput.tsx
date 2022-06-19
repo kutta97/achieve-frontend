@@ -1,27 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { isNumberObject } from "util/types";
 import { ScoreType } from "../../vo/goals/examGoalVO";
 import { InputWrap } from "./InputWrap";
-import { TextInput } from "./TextInput";
 
 interface Props {
   classNames?: string;
+  scoreType: ScoreType;
+  score: string;
+  onChangeScoreType: (scoreType: ScoreType) => void;
+  onChangeScore: (score: string) => void;
 }
 
 export const ScoreInput: React.FC<Props> = ({
   classNames,
+  scoreType,
+  score,
+  onChangeScoreType,
+  onChangeScore
 }) => {
 
-  const [scoreType, setScoreType] = useState<ScoreType>('NUMBER');
-  const [score, setScore] = useState<string>("100");
-
   const handleChangeScoreType = e => {
-    setScoreType(e.target.value);
+    onChangeScoreType(e.target.value);
+    e.target.value === 'NUMBER' && onChangeScore('100');
+    e.target.value === 'LETTER' && onChangeScore('A+');
+    e.target.value === 'PERCENTAGE' && onChangeScore('90');
   }
 
   const handleChangeScore = e => {
-    setScore(e.target.value.toString());
+    onChangeScore(e.target.value.toString());
   }
 
   return (
@@ -47,14 +53,15 @@ export const ScoreInput: React.FC<Props> = ({
             점 이상 받을 것이다!
           </div>}
         {scoreType === 'LETTER' &&
-          <div className="scoreInput"><select name="score" value={score} onChange={handleChangeScore}>
-            <option value='A+'>A+</option>
-            <option value='A0'>A0</option>
-            <option value='B+'>B+</option>
-            <option value='B0'>B0</option>
-            <option value='C+'>C+</option>
-            <option value='C0'>C0</option>
-          </select>
+          <div className="scoreInput">
+            <select className="letterInput" name="score" value={score} onChange={handleChangeScore}>
+              <option value='A+'>A+</option>
+              <option value='A0'>A0</option>
+              <option value='B+'>B+</option>
+              <option value='B0'>B0</option>
+              <option value='C+'>C+</option>
+              <option value='C0'>C0</option>
+            </select>
             이상 받을 것이다!
           </div>}
         {scoreType === 'PERCENTAGE' &&
@@ -68,7 +75,7 @@ export const ScoreInput: React.FC<Props> = ({
               value={+score}
               onChange={handleChangeScore}
             />
-            % 이상 받을 것이다!
+            % 이상 안에 들 것이다!
           </div>}
       </InputWrap>
     </ScoreInputStyled >
@@ -105,6 +112,10 @@ const ScoreInputStyled = styled.div`
     gap:10px;
     font-size :15px ;
     align-items: center;
+  }
+
+  .letterInput {
+    width: 100px;
   }
 
 `;

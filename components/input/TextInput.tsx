@@ -5,15 +5,29 @@ import { InputWrap } from "./InputWrap";
 interface Props {
   classNames?: string;
   title: string;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-export const TextInput: React.FC<Props> = ({ classNames, title }) => {
+export const TextInput: React.FC<Props> = ({
+  classNames,
+  title,
+  value,
+  onChange
+}) => {
+
+  const handleChangeInput = e => {
+    onChange(e.target.value);
+  }
+
   return (
     <TextInputStyled className={classNames}>
       <InputWrap title={title}>
         <input
           type="text"
+          value={value}
           placeholder="write your exam name"
+          onChange={handleChangeInput}
         />
       </InputWrap>
     </TextInputStyled>

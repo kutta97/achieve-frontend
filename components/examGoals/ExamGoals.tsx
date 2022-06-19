@@ -9,9 +9,10 @@ import { ExamGoalBox } from "./ExamGoalBox";
 interface Props {
   className?: string;
   examGoals: ExamGoalVO[];
+  onCreateGoal: (examGoal: ExamGoalVO) => void;
 }
 
-export const ExamGoals: React.FC<Props> = observer(({ className, examGoals }) => {
+export const ExamGoals: React.FC<Props> = observer(({ className, examGoals, onCreateGoal }) => {
 
   const [isInputFormVisible, setIsInputFormVisible] = useState(false);
 
@@ -19,8 +20,9 @@ export const ExamGoals: React.FC<Props> = observer(({ className, examGoals }) =>
     setIsInputFormVisible(true);
   }
 
-  const handleCreateClick = () => {
-
+  const handleCreateClick = (examGoal: ExamGoalVO) => {
+    onCreateGoal(examGoal);
+    setIsInputFormVisible(false);
   }
 
   const handleCloseClick = () => {
