@@ -41,10 +41,11 @@ const SubTitleWithButtonStyled = styled.div`
   .button {
     font-size: 15px;
     font-weight: bold;
-    padding: 5px 35px;
+    padding: 5px 20px;
     background: #C4C4C4;
     border-radius: 10px;
     border: 0;
+    cursor: pointer;
 
     &:hover {
       background: #929292;

@@ -27,7 +27,7 @@ export const ExamGoals: React.FC<Props> = observer(({ className, examGoals }) =>
         buttonName="CREATE NEW GOAL"
         onClick={handleCreateGoalClick}
       >
-        YOU HAVE 5 EXAM GOALS!
+        {`YOU HAVE ${examGoals.length} EXAM GOALS!`}
       </SubTitleWithButton>
 
       {isInputFormVisible && <ExamGoalInputBox />}
