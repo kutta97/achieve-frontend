@@ -6,13 +6,22 @@ interface Props {
   className?: string;
   children: React.ReactNode;
   buttonName?: string;
+  onClick?: () => void;
 }
 
-export const SubTitleWithButton: React.FC<Props> = ({ className, children, buttonName }) => {
+export const SubTitleWithButton: React.FC<Props> = ({ className, children, buttonName, onClick }) => {
+
+  const handleClick = () => {
+    onClick?.();
+  }
+
   return (
     <SubTitleWithButtonStyled className={className}>
       <SubTitle className="title">{children}</SubTitle>
-      <button className="button">
+      <button
+        className="button"
+        onClick={handleClick}
+      >
         {buttonName}
       </button>
     </SubTitleWithButtonStyled>

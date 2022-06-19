@@ -1,9 +1,10 @@
+import { observer } from "mobx-react";
 import React from "react";
 import styled from "styled-components";
 import { ExamGoals } from "../../components/examGoals/ExamGoals";
 import { useGoals } from "./useGoals";
 
-const Goals: React.FC = () => {
+const Goals: React.FC = observer(() => {
 
   const { examGoals } = useGoals();
 
@@ -12,7 +13,7 @@ const Goals: React.FC = () => {
       <ExamGoals examGoals={examGoals} />
     </GoalsFrameStyled>
   )
-}
+});
 
 const GoalsFrameStyled = styled.div`
 `;
