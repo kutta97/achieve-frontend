@@ -8,8 +8,10 @@ export interface ExamGoalVO {
   startDate: string,
   dueDate: string,
   dDay: string,
+  states: State[]
   habitTrackerCount: number,
   habitTracker: habitTracker[], 
 }
 
 export type ScoreType = 'NUMBER' | 'LETTER' | 'PERCENTAGE';
+export type State = 'GROUP' | 'ACHIEVING...' | 'ACHIEVED';
