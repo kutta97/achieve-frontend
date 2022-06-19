@@ -4,7 +4,6 @@ import { RecentGoals } from "../../components/recentGoals/RecentGoals";
 import { RecentBadges } from "../../components/recentBadges/RecentBadges";
 
 const Home: React.FC = () => {
-
   return (
     <HomeFrameStyled>
       <RecentGoals className="recentGoals" />
