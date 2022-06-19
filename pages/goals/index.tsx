@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { SubTitleWithButton } from "../../components/subtitle/SubtitleWithButton";
+import { useGoals } from "./useGoals";
 
 const Goals: React.FC = () => {
+
+  const examGoals = useGoals();
 
   return (
     <GoalsFrameStyled>
