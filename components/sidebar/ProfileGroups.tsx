@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SubTitle } from "../Subtitle/Subtitle";
+import { SubTitle } from "../subtitle/Subtitle";
 
 interface Props {
   className?: string;
