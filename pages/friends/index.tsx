@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Layout } from "../../components/layout/Layout";
 
 const Friends: React.FC = () => {
 
   return (
-    <FriendsFrameStyled>
-    </FriendsFrameStyled>
+    <Layout selectedPage="FRIENDS">
+      <FriendsFrameStyled>
+      </FriendsFrameStyled>
+    </Layout>
   )
 }
 

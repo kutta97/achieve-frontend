@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Layout } from "../../components/layout/Layout";
 
 const Groups: React.FC = () => {
   return (
-    <GroupsFrameStyled>
-    </GroupsFrameStyled>
+    <Layout selectedPage="GROUPS">
+      <GroupsFrameStyled>
+      </GroupsFrameStyled>
+    </Layout>
   )
 }
 

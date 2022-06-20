@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Layout } from "../../components/layout/Layout";
 
 const Badges: React.FC = () => {
 
   return (
-    <BadgesFrameStyled>
-    </BadgesFrameStyled>
+    <Layout selectedPage="BADGES">
+      <BadgesFrameStyled>
+      </BadgesFrameStyled>
+    </Layout>
   )
 }
 

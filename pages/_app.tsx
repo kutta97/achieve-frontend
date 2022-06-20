@@ -9,9 +9,7 @@ const rootStore = new RootStore();
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider rootStore={rootStore}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </Provider>
   )
 }

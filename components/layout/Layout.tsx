@@ -6,9 +6,10 @@ import { Sidebar } from "../sidebar/Sidebar";
 interface Props {
   className?: string;
   children?: React.ReactNode;
+  selectedPage?: string;
 }
 
-export const Layout: React.FC<Props> = ({ className, children }) => {
+export const Layout: React.FC<Props> = ({ className, children, selectedPage }) => {
 
   const [friends] = useState(['1', '2', '3', '4', '5'])
   const [groups] = useState([
@@ -18,7 +19,7 @@ export const Layout: React.FC<Props> = ({ className, children }) => {
 
   return (
     <LayoutFrameStyled className={className}>
-      <Header className="header" selected="OVERVIEW" />
+      <Header className="header" selected={selectedPage} />
       <div className="BodyWrap">
 
         <div className="sidebar">
