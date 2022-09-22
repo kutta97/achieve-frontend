@@ -53,6 +53,6 @@ const NavigationStyled = styled.div`
     width: 1280px;
     flex-direction: row;
     margin: auto auto 2px auto;
-    padding-left: 310px;
+    padding-left: 340px;
   }
 `;

@@ -10,12 +10,18 @@ interface Props {
 
 export const NavLayout = ({ children, selectedPage }: Props) => {
   return (
-    <>
+    <NavLayoutFrame>
       <Navigation selected={selectedPage} />
       <BodyFrame>{children}</BodyFrame>
-    </>
+    </NavLayoutFrame>
   );
 };
+
+const NavLayoutFrame = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const BodyFrame = styled.div`
   display: flex;
