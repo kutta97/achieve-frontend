@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { NavLayout } from '../../components/layouts/navLayout/NavLayout';
+import { SidebarLayout } from '../../components/layouts/sidebarLayout/SidebarLayout';
 import { NextPageWithLayout } from '../_app';
 
 const Overview: NextPageWithLayout = () => {
@@ -11,7 +12,11 @@ const Overview: NextPageWithLayout = () => {
 const OverviewFrame = styled.div``;
 
 Overview.getLayout = (page: ReactElement) => {
-  return <NavLayout selectedPage="OVERVIEW">{page}</NavLayout>;
+  return (
+    <NavLayout selectedPage="OVERVIEW">
+      <SidebarLayout>{page}</SidebarLayout>
+    </NavLayout>
+  );
 };
 
 export default Overview;
