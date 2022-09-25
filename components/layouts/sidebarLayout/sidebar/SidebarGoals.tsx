@@ -42,14 +42,14 @@ interface GoalItemProps {
 
 const SidebarGoalItem = ({ goalTitle }: GoalItemProps) => {
   return (
-    <SidebarGoalItemFrame>
+    <SidebarGoalItemStyled>
       <SidebarGoalItemBullet />
       {goalTitle}
-    </SidebarGoalItemFrame>
+    </SidebarGoalItemStyled>
   );
 };
 
-const SidebarGoalItemFrame = styled.div`
+const SidebarGoalItemStyled = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;

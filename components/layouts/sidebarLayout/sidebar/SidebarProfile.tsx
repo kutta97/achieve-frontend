@@ -13,7 +13,7 @@ export const SidebarProfile = ({
   description = '',
 }: Props) => {
   return (
-    <SidebarProfileFrame>
+    <SidebarProfileStyled>
       <Image
         className="profileImage"
         src={image ?? '/assets/test/profile_test.png'}
@@ -26,11 +26,11 @@ export const SidebarProfile = ({
         <p className="name">{name}</p>
         <p className="description">{description}</p>
       </ProfileInfo>
-    </SidebarProfileFrame>
+    </SidebarProfileStyled>
   );
 };
 
-const SidebarProfileFrame = styled.div`
+const SidebarProfileStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

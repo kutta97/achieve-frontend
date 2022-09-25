@@ -12,7 +12,7 @@ export const Sidebar = observer(() => {
 
   return (
     <Box width={230}>
-      <SidebarFrame>
+      <SidebarStyled>
         <SidebarProfile
           name={profile?.name}
           image={profile?.image}
@@ -34,12 +34,12 @@ export const Sidebar = observer(() => {
             />
           </span>
         </SidebarInfo>
-      </SidebarFrame>
+      </SidebarStyled>
     </Box>
   );
 });
 
-const SidebarFrame = styled.div`
+const SidebarStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 230px;

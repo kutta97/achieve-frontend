@@ -8,13 +8,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 export const Box = ({ width, height, ...props }: Props) => {
   return (
-    <BoxFrame width={width} height={height} {...props}>
+    <BoxStyled width={width} height={height} {...props}>
       {props.children}
-    </BoxFrame>
+    </BoxStyled>
   );
 };
 
-const BoxFrame = styled.div<{ width?: number; height?: number }>`
+const BoxStyled = styled.div<{ width?: number; height?: number }>`
   display: flex;
   flex-direction: column;
   width: ${({ width }) => (width ? width : '100%')};

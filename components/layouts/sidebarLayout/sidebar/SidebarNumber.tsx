@@ -5,10 +5,10 @@ interface Props {
 }
 
 export const SidebarNumber = ({ number }: Props) => {
-  return <SidebarNumberFrame>{number}</SidebarNumberFrame>;
+  return <SidebarNumberStyled>{number}</SidebarNumberStyled>;
 };
 
-const SidebarNumberFrame = styled.div`
+const SidebarNumberStyled = styled.div`
   display: flex;
   width: 20px;
   height: 20px;

@@ -9,14 +9,14 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <LayoutFrame>
+    <LayoutStyled>
       <Header />
       {children}
-    </LayoutFrame>
+    </LayoutStyled>
   );
 };
 
-const LayoutFrame = styled.div`
+const LayoutStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

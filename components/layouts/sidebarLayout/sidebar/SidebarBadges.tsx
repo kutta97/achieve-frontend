@@ -9,13 +9,13 @@ interface Props {
 
 export const SidebarBadges = ({ badgeCount, badgeList }: Props) => {
   return (
-    <SidebarBadgesFrame>
+    <SidebarBadgesStyled>
       <SidebarTitle title="Badges" number={badgeCount} />
-    </SidebarBadgesFrame>
+    </SidebarBadgesStyled>
   );
 };
 
-const SidebarBadgesFrame = styled.div`
+const SidebarBadgesStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
