@@ -1,9 +1,9 @@
+import { Layout } from '@components/layouts/layout/Layout';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Layout } from '../components/layouts/layout/Layout';
 import GlobalStyles from '../styles/globalStyles';
 import { theme } from '../styles/theme';
 
