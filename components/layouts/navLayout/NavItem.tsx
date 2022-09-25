@@ -6,11 +6,17 @@ interface Props {
   path?: string;
   icon?: string;
   name?: string;
+  selected?: boolean;
+  onClick?: () => void;
 }
 
-export const NavItem = ({ path, icon, name }: Props) => {
+export const NavItem = ({ path, icon, name, selected, onClick }: Props) => {
+  const handleClick = () => {
+    onClick?.();
+  };
+
   return (
-    <NavItemFrame>
+    <NavItemFrame selected={selected} onClick={handleClick}>
       {path && (
         <Link href={path} passHref={true}>
           <NavItemContent>
@@ -29,13 +35,19 @@ const NavItemFrame = styled.li<{ selected?: boolean }>`
   height: 36px;
   padding: 6px 12px;
   cursor: pointer;
-  color: ${(props) => props.theme.colors.BasicWhite};
+  mix-blend-mode: overlay;
+  color: ${({ theme }) => theme.colors.BasicWhite};
 
   &:hover {
-    background: #000000;
-    mix-blend-mode: overlay;
-    border-radius: 10px;
+    mix-blend-mode: ${({ selected }) => (selected ? 'overlay' : 'normal')};
   }
+
+  ${({ selected }) =>
+    selected &&
+    `
+    background: #000000;
+    border-radius: 10px;
+  `}
 `;
 
 const NavItemContent = styled.div`
