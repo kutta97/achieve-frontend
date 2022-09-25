@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${(props) => props.theme.colors.BasicBg};
+    background-color: ${({ theme }) => theme.colors.BasicBg};
     font-family: Roboto, sans-serif;
   }
 

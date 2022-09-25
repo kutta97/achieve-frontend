@@ -22,5 +22,5 @@ const HeaderFrame = styled.div`
   height: 40px;
   padding: 8px 16px;
 
-  background: ${(props) => props.theme.colors.BasicWhite};
+  background: ${({ theme }) => theme.colors.BasicWhite};
 `;

@@ -53,7 +53,7 @@ const ProfileInfo = styled.div`
     line-height: 19px;
     margin: 0 0 12px 0;
 
-    color: ${(props) => props.theme.colors.BasicBlack};
+    color: ${({ theme }) => theme.colors.BasicBlack};
   }
   .description {
     font-weight: 400;
@@ -61,7 +61,7 @@ const ProfileInfo = styled.div`
     line-height: 13px;
     margin: 0 0 15px 0;
 
-    color: ${(props) => props.theme.colors.BasicGray};
+    color: ${({ theme }) => theme.colors.BasicGray};
     white-space: pre;
   }
 `;

@@ -19,10 +19,10 @@ const SidebarNumberFrame = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: ${(props) => props.theme.colors.SolidPurple};
+  color: ${({ theme }) => theme.colors.SolidPurple};
 
   padding-top: 2px;
 
-  border: 1px solid ${(props) => props.theme.colors.SolidPurple};
+  border: 1px solid ${({ theme }) => theme.colors.SolidPurple};
   border-radius: 8px;
 `;

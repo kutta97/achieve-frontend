@@ -58,5 +58,5 @@ const SidebarDivider = styled.div`
   height: 1px;
   margin-bottom: 15px;
 
-  background: ${(props) => props.theme.colors.ShadeGray10};
+  background: ${({ theme }) => theme.colors.ShadeGray10};
 `;
