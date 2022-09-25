@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 export const Header = () => {
   return (
-    <HeaderFrame>
+    <HeaderStyled>
       <Image
         src="/assets/icon/logo/achieve_logo_title.svg"
         alt=""
         width={122}
         height={24}
       />
-    </HeaderFrame>
+    </HeaderStyled>
   );
 };
 
-const HeaderFrame = styled.div`
+const HeaderStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,5 +22,5 @@ const HeaderFrame = styled.div`
   height: 40px;
   padding: 8px 16px;
 
-  background: ${(props) => props.theme.colors.BasicWhite};
+  background: ${({ theme }) => theme.colors.BasicWhite};
 `;

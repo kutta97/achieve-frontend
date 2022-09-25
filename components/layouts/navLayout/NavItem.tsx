@@ -16,7 +16,7 @@ export const NavItem = ({ path, icon, name, selected, onClick }: Props) => {
   };
 
   return (
-    <NavItemFrame selected={selected} onClick={handleClick}>
+    <NavItemStyled selected={selected} onClick={handleClick}>
       {path && (
         <Link href={path} passHref={true}>
           <NavItemContent>
@@ -25,11 +25,11 @@ export const NavItem = ({ path, icon, name, selected, onClick }: Props) => {
           </NavItemContent>
         </Link>
       )}
-    </NavItemFrame>
+    </NavItemStyled>
   );
 };
 
-const NavItemFrame = styled.li<{ selected?: boolean }>`
+const NavItemStyled = styled.li<{ selected?: boolean }>`
   display: flex;
   align-items: center;
   height: 36px;

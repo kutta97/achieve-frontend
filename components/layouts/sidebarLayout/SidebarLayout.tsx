@@ -9,14 +9,14 @@ interface Props {
 
 export const SidebarLayout = ({ children }: Props) => {
   return (
-    <SidebarLayoutFrame>
+    <SidebarLayoutStyled>
       <Sidebar />
       <ContentFrame>{children}</ContentFrame>
-    </SidebarLayoutFrame>
+    </SidebarLayoutStyled>
   );
 };
 
-const SidebarLayoutFrame = styled.div`
+const SidebarLayoutStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

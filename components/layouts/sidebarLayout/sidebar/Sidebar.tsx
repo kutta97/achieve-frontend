@@ -12,7 +12,7 @@ export const Sidebar = observer(() => {
 
   return (
     <Box width={230}>
-      <SidebarFrame>
+      <SidebarStyled>
         <SidebarProfile
           name={profile?.name}
           image={profile?.image}
@@ -34,16 +34,15 @@ export const Sidebar = observer(() => {
             />
           </span>
         </SidebarInfo>
-      </SidebarFrame>
+      </SidebarStyled>
     </Box>
   );
 });
 
-const SidebarFrame = styled.div`
+const SidebarStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 230px;
-  height: 100%;
   padding: 40px 28px;
 `;
 
@@ -58,5 +57,5 @@ const SidebarDivider = styled.div`
   height: 1px;
   margin-bottom: 15px;
 
-  background: ${(props) => props.theme.colors.ShadeGray10};
+  background: ${({ theme }) => theme.colors.ShadeGray10};
 `;

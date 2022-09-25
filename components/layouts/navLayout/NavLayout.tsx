@@ -9,14 +9,14 @@ interface Props {
 
 export const NavLayout = ({ children }: Props) => {
   return (
-    <NavLayoutFrame>
+    <NavLayoutStyled>
       <Navbar />
       <BodyFrame>{children}</BodyFrame>
-    </NavLayoutFrame>
+    </NavLayoutStyled>
   );
 };
 
-const NavLayoutFrame = styled.div`
+const NavLayoutStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

@@ -42,14 +42,14 @@ interface GoalItemProps {
 
 const SidebarGoalItem = ({ goalTitle }: GoalItemProps) => {
   return (
-    <SidebarGoalItemFrame>
+    <SidebarGoalItemStyled>
       <SidebarGoalItemBullet />
       {goalTitle}
-    </SidebarGoalItemFrame>
+    </SidebarGoalItemStyled>
   );
 };
 
-const SidebarGoalItemFrame = styled.div`
+const SidebarGoalItemStyled = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -60,12 +60,12 @@ const SidebarGoalItemFrame = styled.div`
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
-  color: ${(props) => props.theme.colors.BasicGray};
+  color: ${({ theme }) => theme.colors.BasicGray};
 `;
 
 const SidebarGoalItemBullet = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: ${(props) => props.theme.colors.SolidGreen};
+  background: ${({ theme }) => theme.colors.SolidGreen};
 `;

@@ -9,14 +9,14 @@ interface Props {
 
 export const SidebarTitle = ({ number, title }: Props) => {
   return (
-    <SidebarTitleFrame>
+    <SidebarTitleStyled>
       <SidebarNumber number={number} />
       <p className="sidebar-title">{title}</p>
-    </SidebarTitleFrame>
+    </SidebarTitleStyled>
   );
 };
 
-const SidebarTitleFrame = styled.div`
+const SidebarTitleStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

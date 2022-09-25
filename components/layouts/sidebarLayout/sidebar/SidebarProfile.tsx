@@ -13,7 +13,7 @@ export const SidebarProfile = ({
   description = '',
 }: Props) => {
   return (
-    <SidebarProfileFrame>
+    <SidebarProfileStyled>
       <Image
         className="profileImage"
         src={image ?? '/assets/test/profile_test.png'}
@@ -26,11 +26,11 @@ export const SidebarProfile = ({
         <p className="name">{name}</p>
         <p className="description">{description}</p>
       </ProfileInfo>
-    </SidebarProfileFrame>
+    </SidebarProfileStyled>
   );
 };
 
-const SidebarProfileFrame = styled.div`
+const SidebarProfileStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +53,7 @@ const ProfileInfo = styled.div`
     line-height: 19px;
     margin: 0 0 12px 0;
 
-    color: ${(props) => props.theme.colors.BasicBlack};
+    color: ${({ theme }) => theme.colors.BasicBlack};
   }
   .description {
     font-weight: 400;
@@ -61,7 +61,7 @@ const ProfileInfo = styled.div`
     line-height: 13px;
     margin: 0 0 15px 0;
 
-    color: ${(props) => props.theme.colors.BasicGray};
+    color: ${({ theme }) => theme.colors.BasicGray};
     white-space: pre;
   }
 `;
