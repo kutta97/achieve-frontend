@@ -5,6 +5,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -14,8 +16,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "useDefineForClassFields": true,
     "paths": {
       "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
       "@consts/*": ["./consts/*"],
       "@vo/*": ["./vo/*"]
     }
