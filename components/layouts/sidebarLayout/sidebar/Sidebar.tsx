@@ -1,7 +1,7 @@
+import { Box } from '@components/common/box/Box';
+import { ISidebarProfile } from '@vo/layouts';
 import styled from 'styled-components';
 
-import { ISidebarProfile } from '../../../../vo/layouts/ISidebarProfile';
-import { Box } from '../../../common/box/Box';
 import { SidebarBadges } from './SidebarBadges';
 import { SidebarGoals } from './SidebarGoals';
 import { SidebarProfile } from './SidebarProfile';
