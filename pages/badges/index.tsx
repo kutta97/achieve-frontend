@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 import { NextPageWithLayout } from '../_app';
 
-const Overview: NextPageWithLayout = () => {
-  return <OverviewStyled></OverviewStyled>;
+const Badges: NextPageWithLayout = () => {
+  return <BadgesStyled></BadgesStyled>;
 };
 
-Overview.getLayout = (page: ReactElement) => {
+Badges.getLayout = (page: ReactElement) => {
   return (
     <NavLayout>
       <SidebarLayout>{page}</SidebarLayout>
@@ -17,6 +17,6 @@ Overview.getLayout = (page: ReactElement) => {
   );
 };
 
-const OverviewStyled = styled.div``;
+const BadgesStyled = styled.div``;
 
-export default Overview;
+export default Badges;

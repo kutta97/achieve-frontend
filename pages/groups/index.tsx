@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 import { NextPageWithLayout } from '../_app';
 
-const Overview: NextPageWithLayout = () => {
-  return <OverviewStyled></OverviewStyled>;
+const Groups: NextPageWithLayout = () => {
+  return <GroupsStyled></GroupsStyled>;
 };
 
-Overview.getLayout = (page: ReactElement) => {
+Groups.getLayout = (page: ReactElement) => {
   return (
     <NavLayout>
       <SidebarLayout>{page}</SidebarLayout>
@@ -17,6 +17,6 @@ Overview.getLayout = (page: ReactElement) => {
   );
 };
 
-const OverviewStyled = styled.div``;
+const GroupsStyled = styled.div``;
 
-export default Overview;
+export default Groups;
