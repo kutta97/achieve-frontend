@@ -24,6 +24,7 @@ const SidebarTitleFrame = styled.div`
   gap: 5px;
 
   .sidebar-title {
+    margin: 0;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
