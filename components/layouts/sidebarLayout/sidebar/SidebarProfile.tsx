@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -8,26 +7,28 @@ interface Props {
   description?: string;
 }
 
-export const SidebarProfile = observer(
-  ({ name = '', image, description = '' }: Props) => {
-    return (
-      <SidebarProfileFrame>
-        <Image
-          className="profileImage"
-          src={image ?? '/assets/test/profile_test.png'}
-          alt="profile image"
-          width={130}
-          height={130}
-        />
+export const SidebarProfile = ({
+  name = '',
+  image,
+  description = '',
+}: Props) => {
+  return (
+    <SidebarProfileFrame>
+      <Image
+        className="profileImage"
+        src={image ?? '/assets/test/profile_test.png'}
+        alt="profile image"
+        width={130}
+        height={130}
+      />
 
-        <ProfileInfo>
-          <p className="name">{name}</p>
-          <p className="description">{description}</p>
-        </ProfileInfo>
-      </SidebarProfileFrame>
-    );
-  }
-);
+      <ProfileInfo>
+        <p className="name">{name}</p>
+        <p className="description">{description}</p>
+      </ProfileInfo>
+    </SidebarProfileFrame>
+  );
+};
 
 const SidebarProfileFrame = styled.div`
   display: flex;
