@@ -52,7 +52,6 @@ const ProfileInfo = styled.div`
     font-size: 16px;
     line-height: 19px;
     margin: 0 0 12px 0;
-    text-align: start;
 
     color: ${(props) => props.theme.colors.BasicBlack};
   }
