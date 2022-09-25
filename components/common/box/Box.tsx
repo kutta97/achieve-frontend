@@ -18,7 +18,7 @@ const BoxStyled = styled.div<{ width?: number; height?: number }>`
   display: flex;
   flex-direction: column;
   width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => height ?? height};
+  height: ${({ height }) => (height ? height : 'min-content')};
 
   background: ${({ theme }) => theme.colors.BasicWhite};
   box-shadow: 0 10px 60px rgba(200, 216, 236, 0.5);
