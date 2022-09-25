@@ -51,7 +51,7 @@ const ProfileInfo = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    margin-bottom: 12px;
+    margin: 0 0 12px 0;
     text-align: start;
 
     color: ${(props) => props.theme.colors.BasicBlack};
@@ -60,7 +60,7 @@ const ProfileInfo = styled.div`
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
-    margin-bottom: 24px;
+    margin: 0 0 15px 0;
 
     color: ${(props) => props.theme.colors.BasicGray};
     white-space: pre;
