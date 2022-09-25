@@ -1,16 +1,15 @@
 import { Box } from '@components/common/box/Box';
-import { ISidebarProfile } from '@vo/layouts';
+import { useSidebar } from '@components/layouts/sidebarLayout/sidebar/hooks/useSidebar';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
 import { SidebarBadges } from './SidebarBadges';
 import { SidebarGoals } from './SidebarGoals';
 import { SidebarProfile } from './SidebarProfile';
 
-interface Props {
-  profile?: ISidebarProfile;
-}
+export const Sidebar = observer(() => {
+  const { profile } = useSidebar();
 
-export const Sidebar = ({ profile }: Props) => {
   return (
     <Box width={230}>
       <SidebarFrame>
@@ -38,7 +37,7 @@ export const Sidebar = ({ profile }: Props) => {
       </SidebarFrame>
     </Box>
   );
-};
+});
 
 const SidebarFrame = styled.div`
   display: flex;
