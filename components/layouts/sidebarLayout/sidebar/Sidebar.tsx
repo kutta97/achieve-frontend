@@ -43,7 +43,6 @@ const SidebarStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 230px;
-  height: 100%;
   padding: 40px 28px;
 `;
 
