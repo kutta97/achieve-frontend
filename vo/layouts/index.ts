@@ -1,1 +1,1 @@
-export * from './ISidebarProfile';
+export * from './sidebarLayout/ISidebarProfile';
