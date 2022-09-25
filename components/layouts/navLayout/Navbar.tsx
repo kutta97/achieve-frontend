@@ -1,16 +1,12 @@
+import { RoutePaths } from '@consts/RoutePaths';
 import styled from 'styled-components';
 
-import { RoutePaths } from '../../../consts/RoutePaths';
 import { NavItem } from './NavItem';
 
-interface Props {
-  selected?: string;
-}
-
-export const Navigation = ({ selected }: Props) => {
+export const Navbar = () => {
   return (
-    <NavigationStyled>
-      <div className="navigation-bar-wrap">
+    <NavbarStyled>
+      <ul className="navigation-bar-wrap">
         <NavItem
           path={RoutePaths.overview}
           name="Overview"
@@ -36,12 +32,12 @@ export const Navigation = ({ selected }: Props) => {
           name="Groups"
           icon="/assets/icon/navigation/nav_icon_groups_default.svg"
         />
-      </div>
-    </NavigationStyled>
+      </ul>
+    </NavbarStyled>
   );
 };
 
-const NavigationStyled = styled.div`
+const NavbarStyled = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
