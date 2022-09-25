@@ -3,10 +3,15 @@ import { SidebarLayout } from '@components/layouts/sidebarLayout/SidebarLayout';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
+import { OverviewFragment } from '../../fragments/overview/OverviewFragment';
 import { NextPageWithLayout } from '../_app';
 
 const Overview: NextPageWithLayout = () => {
-  return <OverviewStyled></OverviewStyled>;
+  return (
+    <OverviewStyled>
+      <OverviewFragment />
+    </OverviewStyled>
+  );
 };
 
 Overview.getLayout = (page: ReactElement) => {
