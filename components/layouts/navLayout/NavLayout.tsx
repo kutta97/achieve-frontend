@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Navigation } from './Navigation';
+import { Navbar } from './Navbar';
 
 interface Props {
   children?: React.ReactNode;
-  selectedPage?: string;
 }
 
-export const NavLayout = ({ children, selectedPage }: Props) => {
+export const NavLayout = ({ children }: Props) => {
   return (
     <NavLayoutFrame>
-      <Navigation selected={selectedPage} />
+      <Navbar />
       <BodyFrame>{children}</BodyFrame>
     </NavLayoutFrame>
   );

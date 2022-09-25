@@ -6,12 +6,11 @@ interface Props {
   path?: string;
   icon?: string;
   name?: string;
-  selected?: boolean;
 }
 
-export const NavItem = ({ path, icon, name, selected }: Props) => {
+export const NavItem = ({ path, icon, name }: Props) => {
   return (
-    <NavItemFrame selected={selected}>
+    <NavItemFrame>
       {path && (
         <Link href={path} passHref={true}>
           <NavItemContent>
@@ -24,15 +23,13 @@ export const NavItem = ({ path, icon, name, selected }: Props) => {
   );
 };
 
-const NavItemFrame = styled.div<{ selected?: boolean }>`
+const NavItemFrame = styled.li<{ selected?: boolean }>`
   display: flex;
   align-items: center;
   height: 36px;
   padding: 6px 12px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.BasicWhite};
-
-  color: ${(props) => (props.selected ? `white` : `white`)};
 
   &:hover {
     background: #000000;
