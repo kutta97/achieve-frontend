@@ -24,5 +24,6 @@ const RecentExamGoalsStyled = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+    margin-top: 20px;
   }
 `;
