@@ -14,5 +14,5 @@ const TitleStyled = styled.h1`
   font-size: 16px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.BasicBlack};
-  margin: 0 0 20px 0;
+  margin: 0;
 `;

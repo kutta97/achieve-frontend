@@ -1,27 +1,16 @@
 import { Box } from '@components/common/box/Box';
 import { TagList } from '@components/common/tag/TagList';
-import { BulletColor, BulletTitle } from '@components/common/text/BulletTitle';
+import { BulletTitle } from '@components/common/text/BulletTitle';
 import { IRecentExamGoal } from '@vo/overview/IRecentExamGoal';
 import styled from 'styled-components';
 
-import { ExamGoalStatusType } from '../../../types/examGoalStatusType';
+import { getStateColor } from '../../../types/examGoalStatusType';
 
 interface Props {
   data?: IRecentExamGoal;
 }
 
 export const RecentExamGoalItem = ({ data }: Props) => {
-  const getStateColor = (state: ExamGoalStatusType) => {
-    switch (state) {
-      case 'ACHIEVED':
-        return BulletColor.PURPLE;
-      case 'ACHIEVING':
-        return BulletColor.GREEN;
-      case 'FAILED':
-        return BulletColor.RED;
-    }
-  };
-
   return (
     <Box>
       <RecentExamGoalItemStyled>
