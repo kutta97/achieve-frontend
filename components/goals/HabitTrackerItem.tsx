@@ -22,7 +22,7 @@ const HabitTrackerItemStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid ${({ theme }) => theme.colors.ShadeGray40};
+  border: 1px solid ${({ theme }) => theme.colors.ShadeGray30};
   border-radius: 30px;
   padding: 9px 18px;
 
