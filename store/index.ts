@@ -2,6 +2,7 @@ import { BadgesStore } from './badges/badgesStore';
 import { SidebarStore } from './components/layouts/sidebarLayout/sidebarStore';
 import { FriendsStore } from './friends/friendsStore';
 import { GoalsStore } from './goals/goalsStore';
+import { GroupsStore } from './groups/groupsStore';
 import { OverviewStore } from './overview/overviewStore';
 
 export class RootStore {
@@ -10,6 +11,7 @@ export class RootStore {
   goalsStore: GoalsStore;
   badgesStore: BadgesStore;
   friendsStore: FriendsStore;
+  groupsStore: GroupsStore;
 
   constructor() {
     this.sidebarStore = new SidebarStore();
@@ -17,5 +19,6 @@ export class RootStore {
     this.goalsStore = new GoalsStore();
     this.badgesStore = new BadgesStore();
     this.friendsStore = new FriendsStore();
+    this.groupsStore = new GroupsStore();
   }
 }
