@@ -3,10 +3,15 @@ import { SidebarLayout } from '@components/layouts/sidebarLayout/SidebarLayout';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
+import { GroupsFragment } from '../../fragments/groups/GroupsFragment';
 import { NextPageWithLayout } from '../_app';
 
 const Groups: NextPageWithLayout = () => {
-  return <GroupsStyled></GroupsStyled>;
+  return (
+    <GroupsStyled>
+      <GroupsFragment />
+    </GroupsStyled>
+  );
 };
 
 Groups.getLayout = (page: ReactElement) => {
