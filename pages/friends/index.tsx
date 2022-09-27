@@ -3,10 +3,15 @@ import { SidebarLayout } from '@components/layouts/sidebarLayout/SidebarLayout';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
+import { FriendsFragment } from '../../fragments/friends/FriendsFragment';
 import { NextPageWithLayout } from '../_app';
 
 const Friends: NextPageWithLayout = () => {
-  return <FriendsStyled></FriendsStyled>;
+  return (
+    <FriendsStyled>
+      <FriendsFragment />
+    </FriendsStyled>
+  );
 };
 
 Friends.getLayout = (page: ReactElement) => {
