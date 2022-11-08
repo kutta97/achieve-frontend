@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLButtonElement> {
   text?: string;
 }
 
-export const Button = ({ text }: Props) => {
-  return <ButtonStyled>{text}</ButtonStyled>;
+export const Button = ({ text, ...props }: Props) => {
+  return <ButtonStyled {...props}>{text}</ButtonStyled>;
 };
 
 const ButtonStyled = styled.button<{ width?: number; height?: number }>`
