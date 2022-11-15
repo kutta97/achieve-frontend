@@ -1,3 +1,4 @@
+import { useAuth } from '@components/layouts/hooks/useAuth';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -8,6 +9,17 @@ interface Props {
 }
 
 export const NavLayout = ({ children }: Props) => {
+  const { isLogin, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <div>loading...</div>;
+  }
+
+  if (!isLogin) {
+    location.href = '/auth/login';
+    return null;
+  }
+
   return (
     <NavLayoutStyled>
       <Navbar />

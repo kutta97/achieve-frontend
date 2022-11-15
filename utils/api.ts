@@ -22,12 +22,11 @@ export interface baseRs {
 
 const getCommonHeaders = () => {
   const token = JSON.parse(getStorage(AUTH));
-  console.log('token', token);
   if (!token) {
     return undefined;
   }
   return {
-    Authorization: token.token,
+    Authorization: token.accessToken,
   };
 };
 
