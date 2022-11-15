@@ -2,6 +2,7 @@ import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
 import { EMAIL_PATTERN } from '@consts/Regex';
 import { observer } from 'mobx-react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { useLogin } from './hooks/useLogin';
@@ -36,6 +37,12 @@ export const LoginFragment = observer(() => {
         className="submit-button"
         onClick={handleLoginClick}
       />
+      <SignupLinkWrap>
+        <p>Not registered yet?</p>
+        <Link href={{ pathname: '/auth/signup' }} passHref>
+          <a>Create an Account</a>
+        </Link>
+      </SignupLinkWrap>
     </LoginFragmentStyled>
   );
 });
@@ -55,5 +62,21 @@ const LoginFragmentStyled = styled.div`
     height: 44px;
     font-size: 16px;
     padding: 10px 10px;
+  }
+`;
+
+const SignupLinkWrap = styled.span`
+  display: flex;
+  align-content: center;
+  gap: 7px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.SolidPurple};
+    text-decoration: underline;
+    font-weight: bold;
   }
 `;

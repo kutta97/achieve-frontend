@@ -1,6 +1,7 @@
 import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
 import { EMAIL_PATTERN, NAME_PATTERN } from '@consts/Regex';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { useSignup } from './hooks/useSignup';
@@ -57,6 +58,12 @@ export const SignupFragment = () => {
         className="submit-button"
         onClick={handleSignupClick}
       />
+      <LoginLinkWrap>
+        <p>Already have an Account?</p>
+        <Link href={{ pathname: '/auth/login' }} passHref>
+          <a>Login</a>
+        </Link>
+      </LoginLinkWrap>
     </SignupFragmentStyled>
   );
 };
@@ -76,5 +83,21 @@ const SignupFragmentStyled = styled.div`
     height: 44px;
     font-size: 16px;
     padding: 10px 10px;
+  }
+`;
+
+const LoginLinkWrap = styled.span`
+  display: flex;
+  align-content: center;
+  gap: 7px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.SolidPurple};
+    text-decoration: underline;
+    font-weight: bold;
   }
 `;
