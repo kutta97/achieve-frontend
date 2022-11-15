@@ -1,6 +1,7 @@
 import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
 import { EMAIL_PATTERN, NAME_PATTERN } from '@consts/Regex';
+import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -11,6 +12,12 @@ export const SignupFragment = () => {
 
   return (
     <SignupFragmentStyled>
+      <Image
+        src="/assets/icon/logo/achieve_logo_title.svg"
+        alt=""
+        width={236}
+        height={50}
+      />
       <TextInput
         label="Name"
         register={register('name', {

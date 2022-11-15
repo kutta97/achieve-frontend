@@ -2,6 +2,7 @@ import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
 import { EMAIL_PATTERN } from '@consts/Regex';
 import { observer } from 'mobx-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -12,6 +13,12 @@ export const LoginFragment = observer(() => {
 
   return (
     <LoginFragmentStyled>
+      <Image
+        src="/assets/icon/logo/achieve_logo_title.svg"
+        alt=""
+        width={236}
+        height={50}
+      />
       <TextInput
         label="Email"
         register={register('email', {
