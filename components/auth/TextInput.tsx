@@ -9,6 +9,7 @@ interface Props {
   disabled?: boolean;
   value?: string;
   label?: string;
+  width?: number;
   isNumber?: boolean;
   errors?: FieldErrors;
   isPassword?: boolean;
@@ -22,6 +23,7 @@ export const TextInput = observer(
     disabled,
     value,
     label,
+    width,
     isPassword,
     isNumber,
     errors,
@@ -33,6 +35,7 @@ export const TextInput = observer(
           <TextInputWrap
             {...register}
             placeholder={placeholder}
+            width={width}
             disabled={disabled}
             isError={!!errors?.[register.name]?.message}
             value={value}
@@ -62,8 +65,12 @@ const Label = styled.span`
   color: ${({ theme }) => theme.colors.BasicBlack};
 `;
 
-const TextInputWrap = styled.input<{ disabled: boolean; isError: boolean }>`
-  width: 520px;
+const TextInputWrap = styled.input<{
+  width?: number;
+  disabled: boolean;
+  isError: boolean;
+}>`
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 43px;
   padding: 12px 16px;
 
