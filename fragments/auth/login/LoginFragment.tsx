@@ -21,6 +21,7 @@ export const LoginFragment = observer(() => {
       />
       <TextInput
         label="Email"
+        width={520}
         register={register('email', {
           pattern: {
             value: EMAIL_PATTERN,
@@ -33,6 +34,7 @@ export const LoginFragment = observer(() => {
       />
       <TextInput
         label="Password"
+        width={520}
         register={register('password', {
           required: '비밀번호를 입력해 주세요.',
         })}

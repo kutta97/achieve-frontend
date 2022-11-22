@@ -20,6 +20,7 @@ export const SignupFragment = () => {
       />
       <TextInput
         label="Name"
+        width={520}
         register={register('name', {
           pattern: {
             value: NAME_PATTERN,
@@ -32,6 +33,7 @@ export const SignupFragment = () => {
       />
       <TextInput
         label="Email"
+        width={520}
         register={register('email', {
           pattern: {
             value: EMAIL_PATTERN,
@@ -44,6 +46,7 @@ export const SignupFragment = () => {
       />
       <TextInput
         label="Password"
+        width={520}
         register={register('password', {
           required: '비밀번호를 입력해 주세요.',
         })}
@@ -53,6 +56,7 @@ export const SignupFragment = () => {
       />
       {/*<TextInput*/}
       {/*  label="Confirm Password"*/}
+      {/*  width={520}*/}
       {/*  register={register('password', {*/}
       {/*    required: '비밀번호를 재입력해 주세요.',*/}
       {/*  })}*/}
