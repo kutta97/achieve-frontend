@@ -1,5 +1,5 @@
-import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
+import { TextInput } from '@components/common/form/TextInput';
 import { EMAIL_PATTERN } from '@consts/Regex';
 import { observer } from 'mobx-react';
 import Image from 'next/image';

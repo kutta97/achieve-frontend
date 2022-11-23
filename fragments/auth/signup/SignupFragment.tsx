@@ -1,5 +1,5 @@
-import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
+import { TextInput } from '@components/common/form/TextInput';
 import { EMAIL_PATTERN, NAME_PATTERN } from '@consts/Regex';
 import Image from 'next/image';
 import Link from 'next/link';
