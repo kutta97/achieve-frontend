@@ -82,7 +82,7 @@ export const useGoalCreatePopup = () => {
     }
   };
 
-  const handleCreateClick = async () => {
+  const onSubmit = async () => {
     const isValid = await trigger();
 
     if (!isValid) {
@@ -90,12 +90,12 @@ export const useGoalCreatePopup = () => {
       return;
     }
     const data = getValues();
-    await goalsStore.createExamGoal(data);
+    return await goalsStore.createExamGoal(data);
   };
 
   return {
     handleScoreTypeChange,
-    handleCreateClick,
+    onSubmit,
     startDate,
     endDate,
     changeStartDate,

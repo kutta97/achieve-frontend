@@ -79,7 +79,8 @@ export class GoalsStore {
   async createExamGoal(goalData: GoalCreatePopupFormDataType) {
     try {
       const rq = this.toCreateGoalRq(goalData);
-      await createGoal(rq);
+      const data = await createGoal(rq);
+      return data.ok;
     } catch (e) {
       console.error(e);
     }

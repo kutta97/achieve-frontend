@@ -17,13 +17,19 @@ export const GoalCreatePopup = observer(
   ({ isOpen = false, onClose }: Props) => {
     const {
       handleScoreTypeChange,
-      handleCreateClick,
+      onSubmit,
       startDate,
       endDate,
       changeStartDate,
       changeEndDate,
       control,
     } = useGoalCreatePopup();
+
+    const handleCreateClick = () => {
+      onSubmit().then((ok) => {
+        if (ok) onClose?.();
+      });
+    };
 
     return (
       <Modal
