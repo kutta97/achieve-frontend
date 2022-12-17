@@ -93,9 +93,14 @@ export const useGoalCreatePopup = () => {
     return await goalsStore.createExamGoal(data);
   };
 
+  const loadGoalList = () => {
+    goalsStore.loadExamGoalList();
+  };
+
   return {
     handleScoreTypeChange,
     onSubmit,
+    loadGoalList,
     startDate,
     endDate,
     changeStartDate,
