@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { useSignup } from './hooks/useSignup';
 
 export const SignupFragment = () => {
-  const { handleSignupClick, register, errors } = useSignup();
+  const { handleSignupClick, control } = useSignup();
 
   return (
     <SignupFragmentStyled>
@@ -20,49 +20,53 @@ export const SignupFragment = () => {
       />
       <TextInput
         label="Name"
+        name="name"
         width={520}
-        register={register('name', {
+        rules={{
           pattern: {
             value: NAME_PATTERN,
             message: '이름을 입력해주세요.',
           },
           required: '이름을 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Name"
-        errors={errors}
+        control={control}
       />
       <TextInput
         label="Email"
+        name="email"
         width={520}
-        register={register('email', {
+        rules={{
           pattern: {
             value: EMAIL_PATTERN,
             message: '이메일을 입력해주세요.',
           },
           required: '이메일을 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Email"
-        errors={errors}
+        control={control}
       />
       <TextInput
         label="Password"
+        name="password"
         width={520}
-        register={register('password', {
+        rules={{
           required: '비밀번호를 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Password"
-        errors={errors}
         isPassword
+        control={control}
       />
       {/*<TextInput*/}
       {/*  label="Confirm Password"*/}
+      {/*  name="password"*/}
       {/*  width={520}*/}
-      {/*  register={register('password', {*/}
+      {/*  rules={{*/}
       {/*    required: '비밀번호를 재입력해 주세요.',*/}
-      {/*  })}*/}
+      {/*  }}*/}
       {/*  placeholder="Confirm Password"*/}
-      {/*  errors={errors}*/}
       {/*  isPassword*/}
+      {/*  control={control}*/}
       {/*/>*/}
       <Button
         text="Register"

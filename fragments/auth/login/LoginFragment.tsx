@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { useLogin } from './hooks/useLogin';
 
 export const LoginFragment = observer(() => {
-  const { handleLoginClick, register, errors } = useLogin();
+  const { handleLoginClick, control } = useLogin();
 
   return (
     <LoginFragmentStyled>
@@ -21,25 +21,27 @@ export const LoginFragment = observer(() => {
       />
       <TextInput
         label="Email"
+        name="email"
         width={520}
-        register={register('email', {
+        rules={{
           pattern: {
             value: EMAIL_PATTERN,
             message: '이메일을 입력해주세요.',
           },
           required: '이메일을 입력해 주세요.',
-        })}
+        }}
         placeholder="example@gmail.com"
-        errors={errors}
+        control={control}
       />
       <TextInput
         label="Password"
+        name="password"
         width={520}
-        register={register('password', {
+        rules={{
           required: '비밀번호를 입력해 주세요.',
-        })}
-        errors={errors}
+        }}
         isPassword
+        control={control}
       />
       <Button
         text="Login"

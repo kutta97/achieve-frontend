@@ -1,9 +1,16 @@
 import { observer } from 'mobx-react';
-import { FieldErrors, UseFormRegisterReturn } from 'react-hook-form';
+import {
+  FieldPath,
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from 'react-hook-form';
 import styled from 'styled-components';
 
-interface Props {
-  register?: UseFormRegisterReturn;
+interface Props<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>
+> extends UseControllerProps<TFieldValues, TName> {
   classname?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -11,39 +18,43 @@ interface Props {
   label?: string;
   width?: number;
   isNumber?: boolean;
-  errors?: FieldErrors;
   isPassword?: boolean;
 }
 
 export const TextInput = observer(
-  ({
-    register,
-    placeholder,
-    classname,
-    disabled,
-    value,
-    label,
-    width,
-    isPassword,
-    isNumber,
-    errors,
-  }: Props) => {
+  <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>(
+    props: Props<TFieldValues, TName>
+  ) => {
+    const {
+      classname,
+      placeholder,
+      disabled,
+      value,
+      label,
+      width,
+      isNumber,
+      isPassword,
+    } = props;
+
+    const {
+      field,
+      fieldState: { error },
+    } = useController(props);
+
     return (
       <TextInputStyled className={classname}>
-        <>
-          <Label>{label}</Label>
-          <TextInputWrap
-            {...register}
-            placeholder={placeholder}
-            width={width}
-            disabled={disabled}
-            isError={!!errors?.[register.name]?.message}
-            value={value}
-            defaultValue={value}
-            type={isPassword ? 'password' : isNumber ? 'number' : 'text'}
-          />
-          {errors?.[register.name]?.message && errors[register.name].message}
-        </>
+        <Label>{label}</Label>
+        <TextInputWrap
+          {...field}
+          placeholder={placeholder}
+          width={width}
+          disabled={disabled}
+          isError={!!error?.message}
+          value={value}
+          defaultValue={value}
+          type={isPassword ? 'password' : isNumber ? 'number' : 'text'}
+        />
+        {error?.message && error.message}
       </TextInputStyled>
     );
   }
