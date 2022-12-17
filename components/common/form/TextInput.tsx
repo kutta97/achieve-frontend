@@ -19,6 +19,7 @@ interface Props<
   width?: number;
   isNumber?: boolean;
   isPassword?: boolean;
+  showError?: boolean;
 }
 
 export const TextInput = observer(
@@ -34,6 +35,7 @@ export const TextInput = observer(
       width,
       isNumber,
       isPassword,
+      showError = true,
     } = props;
 
     const {
@@ -54,7 +56,7 @@ export const TextInput = observer(
           defaultValue={value}
           type={isPassword ? 'password' : isNumber ? 'number' : 'text'}
         />
-        {error?.message && error.message}
+        {showError && error?.message && error.message}
       </TextInputStyled>
     );
   }
