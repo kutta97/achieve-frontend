@@ -1,3 +1,5 @@
+import { WeekDayNameType, WeekDayNameTypeKey } from '../types/weekDayNameType';
+
 export function getMonthName(m: number) {
   const date = new Date();
   date.setMonth(m - 1);
@@ -64,4 +66,28 @@ export function getDaysInMonth(month: number, year: number) {
   }
 
   return daysInMonth;
+}
+
+export function stringToWeekdayList(dateStr: string): WeekDayNameType[] {
+  const repeatDate = dateStr.split(',');
+  return (
+    repeatDate.filter((date) => date in WeekDayNameTypeKey) as WeekDayNameType[]
+  ).map((day) => {
+    switch (day) {
+      case 'SUN':
+        return WeekDayNameTypeKey.SUN;
+      case 'MON':
+        return WeekDayNameTypeKey.MON;
+      case 'TUE':
+        return WeekDayNameTypeKey.TUE;
+      case 'WED':
+        return WeekDayNameTypeKey.WED;
+      case 'THU':
+        return WeekDayNameTypeKey.THU;
+      case 'FRI':
+        return WeekDayNameTypeKey.FRI;
+      case 'SAT':
+        return WeekDayNameTypeKey.SAT;
+    }
+  });
 }
