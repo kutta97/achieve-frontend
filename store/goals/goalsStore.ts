@@ -1,9 +1,14 @@
 import { IExamGoal } from '@vo/goals/IExamGoal';
 import { makeObservable, observable } from 'mobx';
 
-import { createGoal } from '../../api/goals/goals';
+import { createGoal, getGoalList } from '../../api/goals/goals';
 import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/GoalCreatePopupFormDataType';
-import { CreateGoalRq } from '../../rqrs/goals/goalsRqrs';
+import {
+  CreateGoalRq,
+  GoalListRq,
+  GoalListRs,
+} from '../../rqrs/goals/goalsRqrs';
+import { stringToWeekdayList } from '../../utils/date';
 
 export class GoalsStore {
   examGoalList: IExamGoal[];
@@ -21,56 +26,12 @@ export class GoalsStore {
 
   async getExamGoalList() {
     try {
-      this.examGoalList = [
-        {
-          title: '소프트웨어 공학 B+ 이상 받는다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D-108',
-          goalStatus: 'ACHIEVING',
-          isGroupGoal: true,
-          habitTrackers: [
-            {
-              title: '수업 전에 강의록 읽고 예습하기',
-              isDone: true,
-              repeatDay: [],
-            },
-            {
-              title: '수업 전에 강의록 읽고 예습하기',
-              isDone: true,
-              repeatDay: [],
-            },
-          ],
-        },
-        {
-          title: '운전면허시험 합격한다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D+108',
-          goalStatus: 'ACHIEVING',
-          isGroupGoal: false,
-          habitTrackers: [
-            {
-              title: '수업 전에 강의록 읽고 예습하기',
-              isDone: true,
-              repeatDay: [],
-            },
-          ],
-        },
-        {
-          title: 'TOEIC 시험 853점 받았다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D+108',
-          goalStatus: 'ACHIEVED',
-          isGroupGoal: false,
-        },
-        {
-          title: '정보처리기사 합격했다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D-108',
-          goalStatus: 'FAILED',
-          isGroupGoal: true,
-          habitTrackers: [],
-        },
-      ];
+      const rq: GoalListRq = {
+        pageNumber: 0,
+        pageSize: 10,
+      };
+      const rs = (await getGoalList(rq)).data;
+      this.examGoalList = this.toGoalListVO(rs);
     } catch (e) {
       console.log(e);
     }
@@ -84,6 +45,26 @@ export class GoalsStore {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  toGoalListVO(rs: GoalListRs): IExamGoal[] {
+    return rs.content.map((goalItem) => {
+      return {
+        title: goalItem.title,
+        period: goalItem.period,
+        dDay: goalItem.dDay,
+        goalStatus: goalItem.goalStatus,
+        isGroupGoal: goalItem.isGroupGoal,
+        habitTrackers: goalItem.habitTrackers.map((it) => {
+          return {
+            habitId: it.habitId,
+            title: it.title,
+            isDone: it.isDone,
+            repeatDay: stringToWeekdayList(it.repeatDays),
+          };
+        }),
+      };
+    });
   }
 
   toCreateGoalRq(vo: GoalCreatePopupFormDataType): CreateGoalRq {
