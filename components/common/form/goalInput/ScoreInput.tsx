@@ -4,6 +4,7 @@ import {
 } from '@components/common/form/SelectInput';
 import { TextInput } from '@components/common/form/TextInput';
 import { observer } from 'mobx-react';
+import { useEffect, useState } from 'react';
 import { Control, useFormState, useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -15,19 +16,41 @@ import {
 
 interface Props {
   classname?: string;
+  onChangeScoreType?: (scoreType: ExamGoalScoreTypeKey) => void;
   disabled?: boolean;
   control: Control<GoalCreatePopupFormDataType>;
 }
 
 export const ScoreInput = observer((props: Props) => {
-  const { classname, disabled, control } = props;
+  const { classname, onChangeScoreType, disabled, control } = props;
   const { errors } = useFormState({ control });
+
+  const [scoreType, setScoreType] = useState<ExamGoalScoreTypeKey>(
+    ExamGoalScoreTypeKey.NUMBER
+  );
 
   const watchScoreType = useWatch({
     control,
     name: 'scoreType',
     defaultValue: ExamGoalScoreTypeKey.NUMBER,
   });
+
+  useEffect(() => {
+    switch (watchScoreType) {
+      case ExamGoalScoreTypeKey.NUMBER: {
+        onChangeScoreType(ExamGoalScoreTypeKey.NUMBER);
+        return setScoreType(ExamGoalScoreTypeKey.NUMBER);
+      }
+      case ExamGoalScoreTypeKey.LETTER: {
+        onChangeScoreType(ExamGoalScoreTypeKey.LETTER);
+        return setScoreType(ExamGoalScoreTypeKey.LETTER);
+      }
+      case ExamGoalScoreTypeKey.PERCENTAGE: {
+        onChangeScoreType(ExamGoalScoreTypeKey.PERCENTAGE);
+        return setScoreType(ExamGoalScoreTypeKey.PERCENTAGE);
+      }
+    }
+  }, [watchScoreType]);
 
   const scoreTypeList: OptionItemType[] = [
     {
@@ -46,39 +69,39 @@ export const ScoreInput = observer((props: Props) => {
 
   const letterGradeList: OptionItemType[] = [
     {
-      id: 0,
+      id: 'A+',
       value: 'A+',
     },
     {
-      id: 1,
+      id: 'A0',
       value: 'A0',
     },
     {
-      id: 2,
+      id: 'A-',
       value: 'A-',
     },
     {
-      id: 3,
+      id: 'B+',
       value: 'B+',
     },
     {
-      id: 4,
+      id: 'B0',
       value: 'B0',
     },
     {
-      id: 5,
+      id: 'B-',
       value: 'B-',
     },
     {
-      id: 6,
+      id: 'C+',
       value: 'C+',
     },
     {
-      id: 7,
+      id: 'C0',
       value: 'C0',
     },
     {
-      id: 8,
+      id: 'C-',
       value: 'C-',
     },
   ];
@@ -94,7 +117,7 @@ export const ScoreInput = observer((props: Props) => {
           itemList={scoreTypeList}
           control={control}
         />
-        {watchScoreType === ExamGoalScoreTypeKey.NUMBER && (
+        {scoreType === ExamGoalScoreTypeKey.NUMBER && (
           <span>
             <TextInput
               label="Score"
@@ -119,7 +142,7 @@ export const ScoreInput = observer((props: Props) => {
             <p>점</p>
           </span>
         )}
-        {watchScoreType === ExamGoalScoreTypeKey.LETTER && (
+        {scoreType === ExamGoalScoreTypeKey.LETTER && (
           <SelectInput
             label="Score"
             name="score"
@@ -130,7 +153,7 @@ export const ScoreInput = observer((props: Props) => {
             control={control}
           />
         )}
-        {watchScoreType === ExamGoalScoreTypeKey.PERCENTAGE && (
+        {scoreType === ExamGoalScoreTypeKey.PERCENTAGE && (
           <span>
             <TextInput
               label="Score"
