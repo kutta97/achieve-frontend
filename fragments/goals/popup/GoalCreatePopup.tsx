@@ -1,7 +1,11 @@
-import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
+import { TextInput } from '@components/common/form/TextInput';
+import { ScoreInput } from '@components/common/form/goalInput/ScoreInput';
 import { Modal } from '@components/common/modal/Modal';
+import { NAME_PATTERN } from '@consts/Regex';
 import styled from 'styled-components';
+
+import { useGoalCreatePopup } from './hooks/useGoalCreatePopup';
 
 interface Props {
   isOpen?: boolean;
@@ -9,6 +13,8 @@ interface Props {
 }
 
 export const GoalCreatePopup = ({ isOpen = false, onClose }: Props) => {
+  const { handleCreateClick, control } = useGoalCreatePopup();
+
   return (
     <Modal
       title="Create New Goal"
@@ -17,22 +23,39 @@ export const GoalCreatePopup = ({ isOpen = false, onClose }: Props) => {
       onClose={onClose}
     >
       <GoalCreatePopupStyled>
-        <TextInput label="Exam name" placeholder="write your exam name" />
-        <span className="input-wrap">
-          <TextInput label="Score type" width={140} />
-          <TextInput label="Score" width={84} />
-          <p>이상 받을 것이다!</p>
-        </span>
+        <TextInput
+          label="Exam name"
+          name="examTitle"
+          rules={{
+            maxLength: {
+              value: 30,
+              message: '제목은 30자 이하로 입력해 주세요.',
+            },
+            pattern: {
+              value: NAME_PATTERN,
+              message: '이 항목은 한글, 영문만 입력이 가능합니다.',
+            },
+            required: '이 항목은 필수 입력값입니다.',
+          }}
+          placeholder="write your exam name"
+          control={control}
+        />
+        <ScoreInput control={control} />
+
         <span className="label-input-wrap">
           <Label>Due date</Label>
           <span className="input-wrap">
             <p>from</p>
-            <TextInput width={140} />
+            <TextInput width={140} name="startDate" control={control} />
             <p>to</p>
-            <TextInput width={140} />
+            <TextInput width={140} name="endDate" control={control} />
           </span>
         </span>
-        <Button text="Create" className="submit-button" />
+        <Button
+          text="Create"
+          className="submit-button"
+          onClick={handleCreateClick}
+        />
       </GoalCreatePopupStyled>
     </Modal>
   );
