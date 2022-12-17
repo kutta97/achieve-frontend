@@ -4,4 +4,10 @@ export enum ExamGoalScoreTypeEnum {
   PERCENTAGE = 'percentile grade',
 }
 
+export enum ExamGoalScoreTypeKey {
+  NUMBER = 'NUMBER',
+  LETTER = 'LETTER',
+  PERCENTAGE = 'PERCENTAGE',
+}
+
 export type ExamGoalScoreType = keyof typeof ExamGoalScoreTypeEnum;
