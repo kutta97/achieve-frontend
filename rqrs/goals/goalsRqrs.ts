@@ -7,8 +7,10 @@ export interface GoalListRq {
 }
 
 export interface HabitTracker {
+  habitId?: number;
   title?: string;
   isDone?: boolean;
+  repeatDays?: string;
 }
 
 export interface GoalItem {
