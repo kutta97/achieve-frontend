@@ -9,7 +9,7 @@ export const useLogin = () => {
 
   const form = useForm<LoginRq>({ mode: 'all' });
   const {
-    register,
+    control,
     getValues,
     setFocus,
     trigger,
@@ -30,7 +30,7 @@ export const useLogin = () => {
       setFocusError(false);
       return;
     }
-  }, [focusError]);
+  }, [focusError, errors?.email?.message, errors?.password?.message, setFocus]);
 
   const handleLoginClick = async () => {
     const isValid = await trigger();
@@ -45,7 +45,6 @@ export const useLogin = () => {
 
   return {
     handleLoginClick,
-    register,
-    errors,
+    control,
   };
 };

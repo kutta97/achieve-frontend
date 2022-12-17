@@ -33,6 +33,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
             </>
           )}
         </Layout>
+        <div id="modal-root" />
       </ThemeProvider>
     </Provider>
   );

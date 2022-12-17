@@ -9,7 +9,7 @@ export const useSignup = () => {
 
   const form = useForm<SignupRq>({ mode: 'all' });
   const {
-    register,
+    control,
     getValues,
     setFocus,
     trigger,
@@ -35,7 +35,13 @@ export const useSignup = () => {
       setFocusError(false);
       return;
     }
-  }, [focusError]);
+  }, [
+    focusError,
+    errors?.name?.message,
+    errors?.email?.message,
+    errors?.password?.message,
+    setFocus,
+  ]);
 
   const handleSignupClick = async () => {
     const isValid = await trigger();
@@ -50,7 +56,6 @@ export const useSignup = () => {
 
   return {
     handleSignupClick,
-    register,
-    errors,
+    control,
   };
 };

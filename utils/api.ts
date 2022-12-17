@@ -5,8 +5,8 @@ import { getStorage } from './localStorage';
 
 const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080'
-    : 'http://localhost:8080';
+    ? 'http://ec2-3-38-71-163.ap-northeast-2.compute.amazonaws.com:8080'
+    : 'http://ec2-3-38-71-163.ap-northeast-2.compute.amazonaws.com:8080';
 
 const Methods = {
   GET: 'GET',

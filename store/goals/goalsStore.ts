@@ -1,6 +1,10 @@
 import { IExamGoal } from '@vo/goals/IExamGoal';
 import { makeObservable, observable } from 'mobx';
 
+import { createGoal } from '../../api/goals/goals';
+import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/GoalCreatePopupFormDataType';
+import { CreateGoalRq } from '../../rqrs/goals/goalsRqrs';
+
 export class GoalsStore {
   examGoalList: IExamGoal[];
 
@@ -70,5 +74,27 @@ export class GoalsStore {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  async createExamGoal(goalData: GoalCreatePopupFormDataType) {
+    try {
+      const rq = this.toCreateGoalRq(goalData);
+      const data = await createGoal(rq);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  toCreateGoalRq(vo: GoalCreatePopupFormDataType): CreateGoalRq {
+    return {
+      goal: {
+        examTitle: vo.examTitle,
+        scoreType: vo.scoreType,
+        score: vo.score,
+        startDate: vo.startDate,
+        endDate: vo.endDate,
+      },
+    };
   }
 }

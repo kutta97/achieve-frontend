@@ -1,5 +1,5 @@
-import { TextInput } from '@components/auth/TextInput';
 import { Button } from '@components/common/button/Button';
+import { TextInput } from '@components/common/form/TextInput';
 import { EMAIL_PATTERN, NAME_PATTERN } from '@consts/Regex';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { useSignup } from './hooks/useSignup';
 
 export const SignupFragment = () => {
-  const { handleSignupClick, register, errors } = useSignup();
+  const { handleSignupClick, control } = useSignup();
 
   return (
     <SignupFragmentStyled>
@@ -20,45 +20,53 @@ export const SignupFragment = () => {
       />
       <TextInput
         label="Name"
-        register={register('name', {
+        name="name"
+        width={520}
+        rules={{
           pattern: {
             value: NAME_PATTERN,
             message: '이름을 입력해주세요.',
           },
           required: '이름을 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Name"
-        errors={errors}
+        control={control}
       />
       <TextInput
         label="Email"
-        register={register('email', {
+        name="email"
+        width={520}
+        rules={{
           pattern: {
             value: EMAIL_PATTERN,
             message: '이메일을 입력해주세요.',
           },
           required: '이메일을 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Email"
-        errors={errors}
+        control={control}
       />
       <TextInput
         label="Password"
-        register={register('password', {
+        name="password"
+        width={520}
+        rules={{
           required: '비밀번호를 입력해 주세요.',
-        })}
+        }}
         placeholder="Enter Password"
-        errors={errors}
         isPassword
+        control={control}
       />
       {/*<TextInput*/}
       {/*  label="Confirm Password"*/}
-      {/*  register={register('password', {*/}
+      {/*  name="password"*/}
+      {/*  width={520}*/}
+      {/*  rules={{*/}
       {/*    required: '비밀번호를 재입력해 주세요.',*/}
-      {/*  })}*/}
+      {/*  }}*/}
       {/*  placeholder="Confirm Password"*/}
-      {/*  errors={errors}*/}
       {/*  isPassword*/}
+      {/*  control={control}*/}
       {/*/>*/}
       <Button
         text="Register"
