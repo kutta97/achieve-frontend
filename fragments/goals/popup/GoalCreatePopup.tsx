@@ -1,5 +1,6 @@
 import { Button } from '@components/common/button/Button';
 import { TextInput } from '@components/common/form/TextInput';
+import { DateInput } from '@components/common/form/goalInput/DateInput';
 import { ScoreInput } from '@components/common/form/goalInput/ScoreInput';
 import { Modal } from '@components/common/modal/Modal';
 import { NAME_PATTERN } from '@consts/Regex';
@@ -13,7 +14,15 @@ interface Props {
 }
 
 export const GoalCreatePopup = ({ isOpen = false, onClose }: Props) => {
-  const { handleCreateClick, control } = useGoalCreatePopup();
+  const {
+    handleScoreTypeChange,
+    handleCreateClick,
+    startDate,
+    endDate,
+    changeStartDate,
+    changeEndDate,
+    control,
+  } = useGoalCreatePopup();
 
   return (
     <Modal
@@ -40,16 +49,18 @@ export const GoalCreatePopup = ({ isOpen = false, onClose }: Props) => {
           placeholder="write your exam name"
           control={control}
         />
-        <ScoreInput control={control} />
-
+        <ScoreInput
+          onChangeScoreType={handleScoreTypeChange}
+          control={control}
+        />
         <span className="label-input-wrap">
           <Label>Due date</Label>
-          <span className="input-wrap">
-            <p>from</p>
-            <TextInput width={140} name="startDate" control={control} />
-            <p>to</p>
-            <TextInput width={140} name="endDate" control={control} />
-          </span>
+          <DateInput
+            startDate={startDate}
+            endDate={endDate}
+            onChangeStartDate={changeStartDate}
+            onChangeEndDate={changeEndDate}
+          />
         </span>
         <Button
           text="Create"
