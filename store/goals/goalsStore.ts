@@ -50,6 +50,7 @@ export class GoalsStore {
   toGoalListVO(rs: GoalListRs): IExamGoal[] {
     return rs.content.map((goalItem) => {
       return {
+        goalId: goalItem.goalId,
         title: goalItem.title,
         period: goalItem.period,
         dDay: goalItem.dDay,

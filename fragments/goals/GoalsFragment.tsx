@@ -28,8 +28,8 @@ export const GoalsFragment = observer(() => {
         <Button text="Create New Goal" onClick={handleOpen} />
       </div>
       <div className="exam-goals-wrap">
-        {examGoalList?.map((value, index) => (
-          <ExamGoalItem data={value} key={index} />
+        {examGoalList?.map((goal) => (
+          <ExamGoalItem data={goal} key={goal.goalId} />
         ))}
       </div>
       <GoalCreatePopup isOpen={isOpen} onClose={handleClose} />
