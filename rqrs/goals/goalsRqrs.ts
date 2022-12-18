@@ -27,6 +27,7 @@ export interface GoalListRs {
   content?: GoalItem[];
   pageNumber?: number;
   pageSize?: number;
+  totalItem?: number;
 }
 
 export interface GoalData {

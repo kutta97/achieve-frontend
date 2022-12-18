@@ -62,7 +62,6 @@ export class OverviewStore {
         pageNumber: pageNumber,
       };
       const rs = (await getOverviewActivity(rq)).data;
-      console.log('rs', rs);
       return this.toRecentActivityVO(rs);
     } catch (e) {}
   }

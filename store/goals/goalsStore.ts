@@ -23,10 +23,12 @@ import { RootStore } from '../index';
 
 export class GoalsStore {
   rootStore: RootStore;
+  totalGoalCount = 0;
   examGoalList: IExamGoal[] = [];
 
   constructor(rootStore: RootStore) {
     makeObservable(this, {
+      totalGoalCount: observable,
       examGoalList: observable,
       initExamGoalList: action,
       loadExamGoalList: action,
@@ -56,6 +58,7 @@ export class GoalsStore {
         pageSize: pageSize,
       };
       const rs = (await getGoalList(rq)).data;
+      this.totalGoalCount = rs.totalItem;
       return this.toGoalListVO(rs);
     } catch (e) {
       console.log(e);

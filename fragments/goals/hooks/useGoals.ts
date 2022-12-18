@@ -27,5 +27,9 @@ export const useGoals = () => {
     }
   };
 
-  return { examGoalList, getNextGoals };
+  return {
+    totalGoalCount: goalsStore.totalGoalCount,
+    examGoalList,
+    getNextGoals,
+  };
 };
