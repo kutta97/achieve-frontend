@@ -10,10 +10,16 @@ export interface OptionMenuItem {
 interface Props {
   className?: string;
   optionList: OptionMenuItem[];
+  onClickMenu?: () => void;
   onSelectItem?: (id: any) => void;
 }
 
-export const OptionMenu = ({ className, optionList, onSelectItem }: Props) => {
+export const OptionMenu = ({
+  className,
+  optionList,
+  onClickMenu,
+  onSelectItem,
+}: Props) => {
   const selectRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +38,7 @@ export const OptionMenu = ({ className, optionList, onSelectItem }: Props) => {
   };
 
   const handleOpen = () => {
+    onClickMenu?.();
     setIsOpen(!isOpen);
   };
 
