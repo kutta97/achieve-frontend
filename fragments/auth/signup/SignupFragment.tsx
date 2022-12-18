@@ -1,5 +1,6 @@
 import { Button } from '@components/common/button/Button';
 import { TextInput } from '@components/common/form/TextInput';
+import { TextareaInput } from '@components/common/form/TextareaInput';
 import { EMAIL_PATTERN, NAME_PATTERN } from '@consts/Regex';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -44,6 +45,20 @@ export const SignupFragment = () => {
           required: '이메일을 입력해 주세요.',
         }}
         placeholder="Enter Email"
+        control={control}
+      />
+      <TextareaInput
+        label="Description"
+        name="description"
+        width={520}
+        rules={{
+          required: '자신에 대한 간략한 소개를 해주세요',
+          maxLength: {
+            value: 150,
+            message: '150자 이내로 입력해주세요.',
+          },
+        }}
+        placeholder="Enter Description about Yourself"
         control={control}
       />
       <TextInput
