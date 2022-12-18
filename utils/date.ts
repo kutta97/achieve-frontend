@@ -68,7 +68,8 @@ export function getDaysInMonth(month: number, year: number) {
   return daysInMonth;
 }
 
-export function stringToWeekdayList(dateStr: string): WeekDayNameType[] {
+export function stringToWeekdayList(dateStr?: string): WeekDayNameType[] {
+  if (!dateStr) return [];
   const repeatDate = dateStr.split(',');
   return (
     repeatDate.filter((date) => date in WeekDayNameTypeKey) as WeekDayNameType[]

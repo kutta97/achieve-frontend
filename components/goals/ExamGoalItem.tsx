@@ -1,18 +1,41 @@
 import { Box } from '@components/common/box/Box';
+import {
+  OptionMenu,
+  OptionMenuItem,
+} from '@components/common/select/OptionMenu';
 import { TagList } from '@components/common/tag/TagList';
 import { BulletTitle } from '@components/common/text/BulletTitle';
 import { ExamGoalItemHabitTracker } from '@components/goals/ExamGoalItemHabitTracker';
 import { IExamGoal } from '@vo/goals/IExamGoal';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 import { getStateColor } from '../../types/examGoalStatusType';
 
 interface Props {
   data?: IExamGoal;
+  onClickMenu?: (goalId: number) => void;
+  onSelectMenu?: (menuId: string) => void;
 }
 
-export const ExamGoalItem = ({ data }: Props) => {
+export const ExamGoalItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
+  const optionMenuList: OptionMenuItem[] = [
+    {
+      id: 'ACHIEVE',
+      value: 'Achieve this goal',
+    },
+    {
+      id: 'HABIT_TRACKER',
+      value: 'Add habit tracker',
+    },
+  ];
+
+  const handleClickMenu = () => {
+    onClickMenu?.(data?.goalId);
+  };
+  const handleSelectMenuItem = (id: string) => {
+    onSelectMenu?.(id);
+  };
+
   return (
     <Box>
       <ExamGoalItemStyled>
@@ -29,16 +52,19 @@ export const ExamGoalItem = ({ data }: Props) => {
           </div>
           <div className="right">
             <DDayText>{data?.dDay}</DDayText>
-            <Image
-              src="/assets/icon/menu/icon_menu_vertical.svg"
-              alt=""
-              width={28}
-              height={28}
+            <OptionMenu
+              className="option_menu"
+              optionList={optionMenuList}
+              onClickMenu={handleClickMenu}
+              onSelectItem={handleSelectMenuItem}
             />
           </div>
         </div>
         <PeriodText className="period">{data?.period}</PeriodText>
-        <ExamGoalItemHabitTracker habitTrackers={data?.habitTrackers} />
+        <ExamGoalItemHabitTracker
+          goalId={data?.goalId}
+          habitTrackers={data?.habitTrackers}
+        />
       </ExamGoalItemStyled>
     </Box>
   );

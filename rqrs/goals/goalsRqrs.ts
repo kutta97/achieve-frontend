@@ -48,3 +48,18 @@ export interface CreateGoalRq {
 export interface EditGoalRq {
   goal: GoalData;
 }
+
+export interface HabitTrackersRs {
+  habitTrackers?: HabitTracker[];
+}
+
+export interface HabitTrackerRs {
+  habitTracker?: HabitTracker;
+}
+
+export interface CreateHabitTrackerRq {
+  habitTracker?: {
+    title?: string;
+    repeatDays?: string;
+  };
+}

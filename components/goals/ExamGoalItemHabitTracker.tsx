@@ -4,10 +4,11 @@ import { IHabitTracker } from '@vo/goals/IExamGoal';
 import styled from 'styled-components';
 
 interface Props {
+  goalId?: number;
   habitTrackers?: IHabitTracker[];
 }
 
-export const ExamGoalItemHabitTracker = ({ habitTrackers }: Props) => {
+export const ExamGoalItemHabitTracker = ({ goalId, habitTrackers }: Props) => {
   const getTitle = (length?: number) => {
     if (!length) return 'No Habit Tracker';
     if (length === 1) return '1 Habit Tracker';
@@ -21,8 +22,12 @@ export const ExamGoalItemHabitTracker = ({ habitTrackers }: Props) => {
         disabled={!habitTrackers?.length}
       >
         <div className="toggle-list-content-wrap">
-          {habitTrackers?.map((value, index) => (
-            <HabitTrackerItem habitTracker={value} key={index} />
+          {habitTrackers?.map((value) => (
+            <HabitTrackerItem
+              goalId={goalId}
+              habitTracker={value}
+              key={value.habitId}
+            />
           ))}
         </div>
       </ToggleList>

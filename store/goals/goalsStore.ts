@@ -1,10 +1,18 @@
 import { IExamGoal } from '@vo/goals/IExamGoal';
 import { action, makeObservable, observable } from 'mobx';
 
-import { createGoal, getGoalList } from '../../api/goals/goals';
-import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/GoalCreatePopupFormDataType';
+import {
+  checkHabitTracker,
+  createGoal,
+  createHabitTracker,
+  deleteHabitTracker,
+  getGoalList,
+} from '../../api/goals/goals';
+import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/goal/GoalCreatePopupFormDataType';
+import { HabitTrackerCreatePopupFormDataType } from '../../fragments/goals/popup/habitTracker/HabitTrackerCreatePopupFormDataType';
 import {
   CreateGoalRq,
+  CreateHabitTrackerRq,
   GoalListRq,
   GoalListRs,
 } from '../../rqrs/goals/goalsRqrs';
@@ -57,6 +65,37 @@ export class GoalsStore {
     }
   }
 
+  async createHabitTracker(
+    goalId: number,
+    habitTrackerData: HabitTrackerCreatePopupFormDataType
+  ) {
+    try {
+      const rq = this.toCreateHabitTrackerRq(habitTrackerData);
+      const data = await createHabitTracker(goalId, rq);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async checkHabitTracker(goalId: number, habitId: number) {
+    try {
+      const data = await checkHabitTracker(goalId, habitId);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async deleteHabitTracker(goalId: number, habitId: number) {
+    try {
+      const data = await deleteHabitTracker(goalId, habitId);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   toGoalListVO(rs: GoalListRs): IExamGoal[] {
     return rs.content.map((goalItem) => {
       return {
@@ -86,6 +125,17 @@ export class GoalsStore {
         score: vo.score,
         startDate: vo.startDate,
         endDate: vo.endDate,
+      },
+    };
+  }
+
+  toCreateHabitTrackerRq(
+    vo: HabitTrackerCreatePopupFormDataType
+  ): CreateHabitTrackerRq {
+    return {
+      habitTracker: {
+        title: vo.title,
+        repeatDays: vo.repeatDays || 'SUN,MON,TUE,WED,THU,FRI,SAT',
       },
     };
   }

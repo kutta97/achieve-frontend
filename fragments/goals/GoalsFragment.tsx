@@ -7,12 +7,15 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { useGoals } from './hooks/useGoals';
-import { GoalCreatePopup } from './popup/GoalCreatePopup';
+import { GoalCreatePopup } from './popup/goal/GoalCreatePopup';
+import { HabitTrackerCreatePopup } from './popup/habitTracker/HabitTrackerCreatePopup';
 
 export const GoalsFragment = observer(() => {
   const { examGoalList, getNextGoals } = useGoals();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedGoalId, setSelectedGoalId] = useState(0);
+  const [isGoalPopupOpen, setIsGoalPopupOpen] = useState(false);
+  const [isHabitPopupOpen, setIsHabitPopupOpen] = useState(false);
 
   const target = useRef<HTMLDivElement>();
 
@@ -27,26 +30,51 @@ export const GoalsFragment = observer(() => {
     getNextGoals(count);
   }, [count]);
 
-  const handleOpen = () => {
-    setIsOpen(true);
+  const handleGoalPopupOpen = () => {
+    setIsGoalPopupOpen(true);
   };
-
-  const handleClose = () => {
-    setIsOpen(false);
+  const handleGoalPopupClose = () => {
+    setIsGoalPopupOpen(false);
+  };
+  const handleMenuClick = (goalId: number) => {
+    setSelectedGoalId(goalId);
+  };
+  const handleHabitPopupClose = () => {
+    setIsHabitPopupOpen(false);
+  };
+  const handleSelectMenuItem = (id: string) => {
+    if (id === 'ACHIEVE') {
+    }
+    if (id === 'HABIT_TRACKER') {
+      setIsHabitPopupOpen(true);
+    }
   };
 
   return (
     <GoalsFragmentStyled>
       <div className="top">
         <Title text="You have 5 Exam Goals!" />
-        <Button text="Create New Goal" onClick={handleOpen} />
+        <Button text="Create New Goal" onClick={handleGoalPopupOpen} />
       </div>
       <div className="exam-goals-wrap" ref={target}>
         {examGoalList?.map((goal) => (
-          <ExamGoalItem data={goal} key={goal.goalId} />
+          <ExamGoalItem
+            data={goal}
+            key={goal.goalId}
+            onClickMenu={handleMenuClick}
+            onSelectMenu={handleSelectMenuItem}
+          />
         ))}
       </div>
-      <GoalCreatePopup isOpen={isOpen} onClose={handleClose} />
+      <GoalCreatePopup
+        isOpen={isGoalPopupOpen}
+        onClose={handleGoalPopupClose}
+      />
+      <HabitTrackerCreatePopup
+        goalId={selectedGoalId}
+        isOpen={isHabitPopupOpen}
+        onClose={handleHabitPopupClose}
+      />
     </GoalsFragmentStyled>
   );
 });

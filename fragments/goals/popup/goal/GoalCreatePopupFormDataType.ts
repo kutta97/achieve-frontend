@@ -1,4 +1,4 @@
-import { ExamGoalScoreType } from '../../../types/examGoalScoreType';
+import { ExamGoalScoreType } from '../../../../types/examGoalScoreType';
 
 export type GoalCreatePopupFormDataType = {
   examTitle?: string;

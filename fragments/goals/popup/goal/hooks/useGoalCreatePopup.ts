@@ -2,7 +2,7 @@ import { useStores } from '@hooks/useStores';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { ExamGoalScoreTypeKey } from '../../../../types/examGoalScoreType';
+import { ExamGoalScoreTypeKey } from '../../../../../types/examGoalScoreType';
 import { GoalCreatePopupFormDataType } from '../GoalCreatePopupFormDataType';
 
 export const useGoalCreatePopup = () => {
