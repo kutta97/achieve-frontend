@@ -7,9 +7,25 @@ export const useGoals = () => {
 
   const [examGoalList, setExamGoalList] = useState<IExamGoal[]>();
 
+  const [currPage, setCurrPage] = useState(0);
+  const [prevPage, setPrevPage] = useState(0);
+
   useEffect(() => {
     goalsStore.examGoalList && setExamGoalList(goalsStore.examGoalList);
   }, [goalsStore.examGoalList]);
 
-  return { examGoalList };
+  useEffect(() => {
+    if (currPage != prevPage) {
+      goalsStore.loadExamGoalList(currPage);
+      setPrevPage(currPage);
+    }
+  }, [currPage]);
+
+  const getNextGoals = (pageNumber: number) => {
+    if (currPage < pageNumber) {
+      setCurrPage(pageNumber);
+    }
+  };
+
+  return { examGoalList, getNextGoals };
 };
