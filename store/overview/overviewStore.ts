@@ -2,9 +2,19 @@ import { IRecentActivity } from '@vo/overview/IRecentActivity';
 import { IRecentExamGoal } from '@vo/overview/IRecentExamGoal';
 import { makeObservable, observable } from 'mobx';
 
+import {
+  getOverviewActivity,
+  getOverviewGoals,
+} from '../../api/overview/overview';
+import {
+  OverviewActivityRq,
+  OverviewActivityRs,
+  OverviewGoalsRs,
+} from '../../rqrs/overview/overviewRqrs';
+
 export class OverviewStore {
-  recentExamGoalList: IRecentExamGoal[];
-  recentActivityList: IRecentActivity[];
+  recentExamGoalList: IRecentExamGoal[] = [];
+  recentActivityList: IRecentActivity[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -15,79 +25,60 @@ export class OverviewStore {
   }
 
   loadOverview() {
-    this.getRecentExamGoalList().then();
-    this.getRecentActivityList().then();
+    this.loadOverviewGoals();
+    this.loadOverviewActivity();
   }
 
-  async getRecentExamGoalList() {
+  loadOverviewGoals() {
+    this.getOverviewGoals().then((goals) => {
+      this.recentExamGoalList = goals;
+    });
+  }
+
+  loadOverviewActivity(pageNumber?: number) {
+    this.getOverviewActivity(pageNumber).then((activity) => {
+      this.recentActivityList = [...this.recentActivityList, activity];
+    });
+  }
+
+  async getOverviewGoals() {
     try {
-      this.recentExamGoalList = [
-        {
-          title: '소프트웨어 공학 B+ 이상 받는다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D-108',
-          goalStatus: 'ACHIEVING',
-          isGroupGoal: true,
-        },
-        {
-          title: '운전면허시험 합격한다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D+108',
-          goalStatus: 'ACHIEVING',
-          isGroupGoal: false,
-        },
-        {
-          title: 'TOEIC 시험 853점 받았다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D+108',
-          goalStatus: 'ACHIEVED',
-          isGroupGoal: false,
-        },
-        {
-          title: '정보처리기사 합격했다!',
-          period: '2022.03.02 ~ 2022.06.21',
-          dDay: 'D-108',
-          goalStatus: 'FAILED',
-          isGroupGoal: true,
-        },
-      ];
+      const rs = (await getOverviewGoals()).data;
+      return this.toRecentExamGoalListVO(rs);
     } catch (e) {
       console.log(e);
     }
   }
 
-  async getRecentActivityList() {
+  async getOverviewActivity(pageNumber = 0) {
     try {
-      this.recentActivityList = [
-        {
-          month: 8,
-          year: 2022,
-          createdGoals: [
-            {
-              name: '“소프트웨어 공학 B+ 이상 받는다!”',
-              date: 'Mon, Aug 6 2022, 08:12 PM',
-            },
-            {
-              name: '“운전면허시험 합격한다!”',
-              date: 'Tue, Aug 6 2022, 09:12 PM',
-            },
-          ],
-          achievedGoals: [
-            {
-              name: '“소프트웨어 공학 B+ 이상 받는다!”',
-              date: 'Mon, Aug 6 2022, 08:12 PM',
-            },
-          ],
-          gainedBadges: [
-            {
-              name: '“Cactus Badge”',
-              date: 'Mon, Aug 6 2022, 08:12 PM',
-            },
-          ],
-        },
-      ];
-    } catch (e) {
-      console.log(e);
-    }
+      const rq: OverviewActivityRq = {
+        pageNumber: pageNumber,
+      };
+      const rs = (await getOverviewActivity(rq)).data;
+      console.log('rs', rs);
+      return this.toRecentActivityVO(rs);
+    } catch (e) {}
+  }
+
+  toRecentExamGoalListVO(rs: OverviewGoalsRs): IRecentExamGoal[] {
+    return rs.goals.map((goal) => ({
+      goalId: goal.goalId,
+      title: goal.title,
+      period: goal.period,
+      dDay: goal.dDay,
+      goalStatus: goal.goalStatus,
+      isGroupGoal: goal.isGroupGoal,
+    }));
+  }
+
+  toRecentActivityVO(rs: OverviewActivityRs): IRecentActivity {
+    return {
+      year: rs.activities.year,
+      month: rs.activities.month,
+      createdGoals: rs.activities.createdGoals,
+      achievedGoals: rs.activities.achievedGoals,
+      gainedBadges: rs.activities.gainedBadges,
+    };
   }
 }

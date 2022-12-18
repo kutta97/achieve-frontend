@@ -21,7 +21,7 @@ import {
 import { stringToWeekdayList } from '../../utils/date';
 
 export class GoalsStore {
-  examGoalList: IExamGoal[];
+  examGoalList: IExamGoal[] = [];
 
   constructor() {
     makeObservable(this, {
@@ -40,7 +40,7 @@ export class GoalsStore {
 
   loadExamGoalList(pageNumber: number) {
     this.getExamGoalList(pageNumber).then((goaList) => {
-      this.examGoalList?.push(...goaList);
+      this.examGoalList = [...this.examGoalList, ...goaList];
     });
   }
 
