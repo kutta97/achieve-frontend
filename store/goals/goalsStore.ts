@@ -2,7 +2,7 @@ import { IExamGoal } from '@vo/goals/IExamGoal';
 import { action, makeObservable, observable } from 'mobx';
 
 import { createGoal, getGoalList } from '../../api/goals/goals';
-import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/GoalCreatePopupFormDataType';
+import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/goal/GoalCreatePopupFormDataType';
 import {
   CreateGoalRq,
   GoalListRq,

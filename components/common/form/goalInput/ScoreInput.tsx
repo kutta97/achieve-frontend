@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Control, useFormState, useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { GoalCreatePopupFormDataType } from '../../../../fragments/goals/popup/GoalCreatePopupFormDataType';
+import { GoalCreatePopupFormDataType } from '../../../../fragments/goals/popup/goal/GoalCreatePopupFormDataType';
 import {
   ExamGoalScoreTypeEnum,
   ExamGoalScoreTypeKey,
