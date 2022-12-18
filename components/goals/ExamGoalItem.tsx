@@ -13,15 +13,15 @@ import { getStateColor } from '../../types/examGoalStatusType';
 
 interface Props {
   data?: IExamGoal;
-  onClickMenu?: (goalId: number) => void;
+  onClickMenu?: (goalId: number, goalTitle: string) => void;
   onSelectMenu?: (menuId: string) => void;
 }
 
 export const ExamGoalItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
   const optionMenuList: OptionMenuItem[] = [
     {
-      id: 'ACHIEVE',
-      value: 'Achieve this goal',
+      id: 'COMPLETE',
+      value: 'Complete this goal',
     },
     {
       id: 'HABIT_TRACKER',
@@ -30,7 +30,7 @@ export const ExamGoalItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
   ];
 
   const handleClickMenu = () => {
-    onClickMenu?.(data?.goalId);
+    onClickMenu?.(data?.goalId, data?.title);
   };
   const handleSelectMenuItem = (id: string) => {
     onSelectMenu?.(id);

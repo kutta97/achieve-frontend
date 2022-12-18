@@ -1,6 +1,9 @@
-import { SidebarGoal } from '../../../rqrs/sidebar/SidebarRqrs';
+export interface SidebarGoal {
+  id: number;
+  title: string;
+}
 
-export interface ISidebarProfile {
+export interface Sidebar {
   name?: string;
   image?: string;
   description?: string;
@@ -8,4 +11,8 @@ export interface ISidebarProfile {
   goalList?: SidebarGoal[];
   badgeCount?: number;
   badgeList?: string[];
+}
+
+export interface SidebarRs {
+  sidebar?: Sidebar;
 }

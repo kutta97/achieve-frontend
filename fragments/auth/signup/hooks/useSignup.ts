@@ -30,6 +30,11 @@ export const useSignup = () => {
       setFocusError(false);
       return;
     }
+    if (errors?.description?.message) {
+      setFocus('description');
+      setFocusError(false);
+      return;
+    }
     if (errors?.password?.message) {
       setFocus('password');
       setFocusError(false);
