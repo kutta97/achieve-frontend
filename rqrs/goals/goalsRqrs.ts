@@ -37,6 +37,15 @@ export interface GoalData {
   endDate?: string;
 }
 
+export interface EditGoalData {
+  examTitle?: string;
+  scoreType?: ExamGoalScoreType;
+  score?: string;
+  startDate?: string;
+  endDate?: string;
+  goalStatus?: ExamGoalStatusType;
+}
+
 export interface GoalRs {
   goal?: GoalData;
 }
@@ -46,7 +55,7 @@ export interface CreateGoalRq {
 }
 
 export interface EditGoalRq {
-  goal: GoalData;
+  goal: EditGoalData;
 }
 
 export interface HabitTrackersRs {

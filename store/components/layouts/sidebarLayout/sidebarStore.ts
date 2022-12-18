@@ -23,9 +23,7 @@ export class SidebarStore {
   async getSidebar() {
     try {
       const rs = (await sidebar()).data;
-      console.log('sidebar profile', rs);
       this.sidebarProfile = this.toSidebarVO(rs);
-      console.log('sidebar profile', this.sidebarProfile);
     } catch (e) {
       console.log(e);
     }

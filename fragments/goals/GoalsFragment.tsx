@@ -8,14 +8,17 @@ import styled from 'styled-components';
 
 import { useGoals } from './hooks/useGoals';
 import { GoalCreatePopup } from './popup/goal/GoalCreatePopup';
+import { GoalCompletePopup } from './popup/goalComplete/GoalCompletePopup';
 import { HabitTrackerCreatePopup } from './popup/habitTracker/HabitTrackerCreatePopup';
 
 export const GoalsFragment = observer(() => {
   const { examGoalList, getNextGoals } = useGoals();
 
   const [selectedGoalId, setSelectedGoalId] = useState(0);
+  const [selectedGoalTitle, setSelectedGoalTitle] = useState('');
   const [isGoalPopupOpen, setIsGoalPopupOpen] = useState(false);
   const [isHabitPopupOpen, setIsHabitPopupOpen] = useState(false);
+  const [isCompletePopupOpen, setIsCompletePopupOpen] = useState(false);
 
   const target = useRef<HTMLDivElement>();
 
@@ -36,14 +39,19 @@ export const GoalsFragment = observer(() => {
   const handleGoalPopupClose = () => {
     setIsGoalPopupOpen(false);
   };
-  const handleMenuClick = (goalId: number) => {
+  const handleMenuClick = (goalId: number, goalTitle: string) => {
     setSelectedGoalId(goalId);
+    setSelectedGoalTitle(goalTitle);
   };
   const handleHabitPopupClose = () => {
     setIsHabitPopupOpen(false);
   };
+  const handleCompletePopupClose = () => {
+    setIsCompletePopupOpen(false);
+  };
   const handleSelectMenuItem = (id: string) => {
-    if (id === 'ACHIEVE') {
+    if (id === 'COMPLETE') {
+      setIsCompletePopupOpen(true);
     }
     if (id === 'HABIT_TRACKER') {
       setIsHabitPopupOpen(true);
@@ -74,6 +82,12 @@ export const GoalsFragment = observer(() => {
         goalId={selectedGoalId}
         isOpen={isHabitPopupOpen}
         onClose={handleHabitPopupClose}
+      />
+      <GoalCompletePopup
+        goalId={selectedGoalId}
+        goalTitle={selectedGoalTitle}
+        isOpen={isCompletePopupOpen}
+        onClose={handleCompletePopupClose}
       />
     </GoalsFragmentStyled>
   );

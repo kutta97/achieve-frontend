@@ -6,6 +6,7 @@ import {
   createGoal,
   createHabitTracker,
   deleteHabitTracker,
+  editGoal,
   getGoalList,
 } from '../../api/goals/goals';
 import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/goal/GoalCreatePopupFormDataType';
@@ -13,6 +14,7 @@ import { HabitTrackerCreatePopupFormDataType } from '../../fragments/goals/popup
 import {
   CreateGoalRq,
   CreateHabitTrackerRq,
+  EditGoalRq,
   GoalListRq,
   GoalListRs,
 } from '../../rqrs/goals/goalsRqrs';
@@ -60,6 +62,29 @@ export class GoalsStore {
       const rq = this.toCreateGoalRq(goalData);
       const data = await createGoal(rq);
       return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async completeGoal(goalId: number, achieved: boolean) {
+    try {
+      const rq: EditGoalRq = {
+        goal: {
+          goalStatus: achieved ? 'ACHIEVED' : 'FAILED',
+        },
+      };
+      const data = await editGoal(goalId, rq);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async editGoal(goalId: number) {
+    try {
+      //const data = await editGoal(goalId, rq);
+      //return data.ok;
     } catch (e) {
       console.error(e);
     }
