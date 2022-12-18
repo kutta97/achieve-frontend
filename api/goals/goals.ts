@@ -1,9 +1,12 @@
 import {
   CreateGoalRq,
+  CreateHabitTrackerRq,
   EditGoalRq,
   GoalListRq,
   GoalListRs,
   GoalRs,
+  HabitTrackerRs,
+  HabitTrackersRs,
 } from '../../rqrs/goals/goalsRqrs';
 import api from '../../utils/api';
 
@@ -25,4 +28,27 @@ export const editGoal = async (goalId: number, rq: EditGoalRq) => {
 
 export const deleteGoal = async (goalId: number) => {
   return await api.deleted(`/goals/${goalId}`);
+};
+
+export const getHabitTrackers = async (goalId: number) => {
+  return await api.get<HabitTrackersRs>(`/goals/${goalId}/habits`);
+};
+
+export const getHabitTracker = async (goalId: number, habitId: number) => {
+  return await api.get<HabitTrackerRs>(`/goals/${goalId}/habits/${habitId}`);
+};
+
+export const createHabitTracker = async (
+  goalId: number,
+  rq: CreateHabitTrackerRq
+) => {
+  return await api.post(`/goals/${goalId}/habits`, rq);
+};
+
+export const doneHabitTracker = async (goalId: number, habitId: number) => {
+  return await api.put(`/goals/${goalId}/habits/${habitId}`);
+};
+
+export const deleteHabitTracker = async (goalId: number, habitId: number) => {
+  return await api.put(`/goals/${goalId}/habits/${habitId}`);
 };
