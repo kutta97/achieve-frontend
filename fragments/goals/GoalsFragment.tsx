@@ -12,7 +12,7 @@ import { GoalCompletePopup } from './popup/goalComplete/GoalCompletePopup';
 import { HabitTrackerCreatePopup } from './popup/habitTracker/HabitTrackerCreatePopup';
 
 export const GoalsFragment = observer(() => {
-  const { examGoalList, getNextGoals } = useGoals();
+  const { totalGoalCount, examGoalList, getNextGoals } = useGoals();
 
   const [selectedGoalId, setSelectedGoalId] = useState(0);
   const [selectedGoalTitle, setSelectedGoalTitle] = useState('');
@@ -61,7 +61,7 @@ export const GoalsFragment = observer(() => {
   return (
     <GoalsFragmentStyled>
       <div className="top">
-        <Title text="You have 5 Exam Goals!" />
+        <Title text={`You have ${totalGoalCount} Exam Goals!`} />
         <Button text="Create New Goal" onClick={handleGoalPopupOpen} />
       </div>
       <div className="exam-goals-wrap" ref={target}>
