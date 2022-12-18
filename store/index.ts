@@ -20,7 +20,7 @@ export class RootStore {
   constructor() {
     this.sidebarStore = new SidebarStore();
     this.overviewStore = new OverviewStore();
-    this.goalsStore = new GoalsStore();
+    this.goalsStore = new GoalsStore(this);
     this.badgesStore = new BadgesStore();
     this.friendsStore = new FriendsStore();
     this.groupsStore = new GroupsStore();

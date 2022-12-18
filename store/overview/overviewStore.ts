@@ -26,12 +26,18 @@ export class OverviewStore {
 
   loadOverview() {
     this.loadOverviewGoals();
-    this.loadOverviewActivity();
+    this.initOverviewActivity();
   }
 
   loadOverviewGoals() {
     this.getOverviewGoals().then((goals) => {
       this.recentExamGoalList = goals;
+    });
+  }
+
+  initOverviewActivity() {
+    this.getOverviewActivity().then((activity) => {
+      this.recentActivityList = [activity];
     });
   }
 
