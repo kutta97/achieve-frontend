@@ -17,7 +17,6 @@ export const GoalsFragment = observer(() => {
   const target = useRef<HTMLDivElement>();
 
   const { count } = useInfiniteScroll({
-    rootMargin: '120px',
     target: target,
     targetArray: examGoalList,
     threshold: 0.2,
