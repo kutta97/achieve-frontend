@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
+import { SidebarGoal } from '../../../../rqrs/sidebar/SidebarRqrs';
 import { SidebarTitle } from './SidebarTitle';
 
 interface Props {
   goalCount?: number;
-  goalList?: string[];
+  goalList?: SidebarGoal[];
 }
 
 export const SidebarGoals = ({ goalCount, goalList }: Props) => {
@@ -12,8 +13,8 @@ export const SidebarGoals = ({ goalCount, goalList }: Props) => {
     <SidebarGoalsFrame>
       <SidebarTitle title="Achieving Goals" number={goalCount} />
       <div className="sidebar-goal-list">
-        {goalList?.map((goalTitle, index) => (
-          <SidebarGoalItem key={index} goalTitle={goalTitle} />
+        {goalList?.map((goal) => (
+          <SidebarGoalItem key={goal.id} goalTitle={goal.title} />
         ))}
       </div>
     </SidebarGoalsFrame>
