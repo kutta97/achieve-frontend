@@ -1,16 +1,27 @@
 import { RoundCheckbox } from '@components/common/checkbox/RoundCheckbox';
+import { useHabitTracker } from '@components/goals/hooks/useHabitTracker';
 import { IHabitTracker } from '@vo/goals/IExamGoal';
 import styled from 'styled-components';
 
 interface Props {
+  goalId?: number;
   habitTracker?: IHabitTracker;
 }
 
-export const HabitTrackerItem = ({ habitTracker }: Props) => {
+export const HabitTrackerItem = ({ goalId, habitTracker }: Props) => {
+  const { onCheckHabitTracker } = useHabitTracker();
+
+  const handleCheckHabitTracker = () => {
+    onCheckHabitTracker(goalId, habitTracker.habitId);
+  };
+
   return (
     <HabitTrackerItemStyled>
       <div className="left">
-        <RoundCheckbox />
+        <RoundCheckbox
+          checked={habitTracker.isDone}
+          onCheck={handleCheckHabitTracker}
+        />
         {habitTracker?.title}
       </div>
     </HabitTrackerItemStyled>

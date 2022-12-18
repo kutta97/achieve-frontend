@@ -2,8 +2,10 @@ import { IExamGoal } from '@vo/goals/IExamGoal';
 import { action, makeObservable, observable } from 'mobx';
 
 import {
+  checkHabitTracker,
   createGoal,
   createHabitTracker,
+  deleteHabitTracker,
   getGoalList,
 } from '../../api/goals/goals';
 import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/goal/GoalCreatePopupFormDataType';
@@ -70,6 +72,24 @@ export class GoalsStore {
     try {
       const rq = this.toCreateHabitTrackerRq(habitTrackerData);
       const data = await createHabitTracker(goalId, rq);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async checkHabitTracker(goalId: number, habitId: number) {
+    try {
+      const data = await checkHabitTracker(goalId, habitId);
+      return data.ok;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async deleteHabitTracker(goalId: number, habitId: number) {
+    try {
+      const data = await deleteHabitTracker(goalId, habitId);
       return data.ok;
     } catch (e) {
       console.error(e);

@@ -61,7 +61,10 @@ export const ExamGoalItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
           </div>
         </div>
         <PeriodText className="period">{data?.period}</PeriodText>
-        <ExamGoalItemHabitTracker habitTrackers={data?.habitTrackers} />
+        <ExamGoalItemHabitTracker
+          goalId={data?.goalId}
+          habitTrackers={data?.habitTrackers}
+        />
       </ExamGoalItemStyled>
     </Box>
   );

@@ -45,10 +45,10 @@ export const createHabitTracker = async (
   return await api.post(`/goals/${goalId}/habits`, rq);
 };
 
-export const doneHabitTracker = async (goalId: number, habitId: number) => {
-  return await api.put(`/goals/${goalId}/habits/${habitId}`);
+export const checkHabitTracker = async (goalId: number, habitId: number) => {
+  return await api.post(`/goals/${goalId}/habits/${habitId}`);
 };
 
 export const deleteHabitTracker = async (goalId: number, habitId: number) => {
-  return await api.put(`/goals/${goalId}/habits/${habitId}`);
+  return await api.deleted(`/goals/${goalId}/habits/${habitId}`);
 };
