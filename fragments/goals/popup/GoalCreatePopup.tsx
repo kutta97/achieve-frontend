@@ -18,6 +18,7 @@ export const GoalCreatePopup = observer(
     const {
       handleScoreTypeChange,
       onSubmit,
+      loadGoalList,
       startDate,
       endDate,
       changeStartDate,
@@ -27,7 +28,10 @@ export const GoalCreatePopup = observer(
 
     const handleCreateClick = () => {
       onSubmit().then((ok) => {
-        if (ok) onClose?.();
+        if (ok) {
+          onClose?.();
+          loadGoalList();
+        }
       });
     };
 

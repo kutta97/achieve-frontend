@@ -1,6 +1,8 @@
 import { ExamGoalStatusType } from '../../types/examGoalStatusType';
+import { WeekDayNameType } from '../../types/weekDayNameType';
 
 export interface IExamGoal {
+  goalId?: number;
   title?: string;
   period?: string;
   dDay?: string;
@@ -10,7 +12,8 @@ export interface IExamGoal {
 }
 
 export interface IHabitTracker {
+  habitId?: number;
   title?: string;
   isDone?: boolean;
-  repeatDay?: number[];
+  repeatDay?: WeekDayNameType[];
 }
