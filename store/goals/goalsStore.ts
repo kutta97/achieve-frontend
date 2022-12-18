@@ -1,5 +1,5 @@
 import { IExamGoal } from '@vo/goals/IExamGoal';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 import { createGoal, getGoalList } from '../../api/goals/goals';
 import { GoalCreatePopupFormDataType } from '../../fragments/goals/popup/GoalCreatePopupFormDataType';
@@ -16,22 +16,32 @@ export class GoalsStore {
   constructor() {
     makeObservable(this, {
       examGoalList: observable,
+      initExamGoalList: action,
+      loadExamGoalList: action,
     });
-    this.loadExamGoalList();
+    this.initExamGoalList();
   }
 
-  loadExamGoalList() {
-    this.getExamGoalList().then();
+  initExamGoalList() {
+    this.getExamGoalList().then((goaList) => {
+      this.examGoalList = goaList;
+    });
   }
 
-  async getExamGoalList() {
+  loadExamGoalList(pageNumber: number) {
+    this.getExamGoalList(pageNumber).then((goaList) => {
+      this.examGoalList?.push(...goaList);
+    });
+  }
+
+  async getExamGoalList(pageNumber = 0, pageSize = 10) {
     try {
       const rq: GoalListRq = {
-        pageNumber: 0,
-        pageSize: 10,
+        pageNumber: pageNumber,
+        pageSize: pageSize,
       };
       const rs = (await getGoalList(rq)).data;
-      this.examGoalList = this.toGoalListVO(rs);
+      return this.toGoalListVO(rs);
     } catch (e) {
       console.log(e);
     }

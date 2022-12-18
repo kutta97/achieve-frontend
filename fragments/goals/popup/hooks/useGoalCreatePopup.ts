@@ -94,7 +94,7 @@ export const useGoalCreatePopup = () => {
   };
 
   const loadGoalList = () => {
-    goalsStore.loadExamGoalList();
+    goalsStore.initExamGoalList();
   };
 
   return {
