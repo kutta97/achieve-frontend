@@ -19,28 +19,33 @@ import {
   GoalListRs,
 } from '../../rqrs/goals/goalsRqrs';
 import { stringToWeekdayList } from '../../utils/date';
+import { RootStore } from '../index';
 
 export class GoalsStore {
-  examGoalList: IExamGoal[];
+  rootStore: RootStore;
+  examGoalList: IExamGoal[] = [];
 
-  constructor() {
+  constructor(rootStore: RootStore) {
     makeObservable(this, {
       examGoalList: observable,
       initExamGoalList: action,
       loadExamGoalList: action,
     });
+    this.rootStore = rootStore;
     this.initExamGoalList();
   }
 
   initExamGoalList() {
     this.getExamGoalList().then((goaList) => {
       this.examGoalList = goaList;
+      this.rootStore.sidebarStore.loadSidebar();
+      this.rootStore.overviewStore.loadOverview();
     });
   }
 
   loadExamGoalList(pageNumber: number) {
     this.getExamGoalList(pageNumber).then((goaList) => {
-      this.examGoalList?.push(...goaList);
+      this.examGoalList = [...this.examGoalList, ...goaList];
     });
   }
 
