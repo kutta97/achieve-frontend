@@ -1,6 +1,8 @@
+import { Button } from '@components/common/button/Button';
 import { Title } from '@components/common/text/Title';
 import { FriendItem } from '@components/friends/FriendItem';
 import { observer } from 'mobx-react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { useFriends } from './hooks/useFriends';
@@ -8,10 +10,17 @@ import { useFriends } from './hooks/useFriends';
 export const FriendsFragment = observer(() => {
   const { totalFriendCount, friendList } = useFriends();
 
+  const [isAddFriendPopupOpen, setIsAddFriendPopupOpen] = useState(false);
+
+  const handleAddFriendPopupOpen = () => {
+    setIsAddFriendPopupOpen(true);
+  };
+
   return (
     <FriendsFragmentStyled>
       <div className="top">
         <Title text={`You Have ${totalFriendCount} Friends!`} />
+        <Button text="Add a Friend" onClick={handleAddFriendPopupOpen} />
       </div>
       <div className="friends-wrap">
         {friendList?.map((value, index) => (

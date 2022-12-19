@@ -16,3 +16,14 @@ export interface FriendListRs {
   pageSize?: number;
   totalItem?: number;
 }
+
+export interface FriendRequestListRs {
+  content?: FriendItem[];
+  pageNumber?: number;
+  pageSize?: number;
+  totalItem?: number;
+}
+
+export interface AcceptFriendRq {
+  accept?: boolean;
+}

@@ -62,7 +62,7 @@ export const GoalsFragment = observer(() => {
     <GoalsFragmentStyled>
       <div className="top">
         <Title text={`You have ${totalGoalCount} Exam Goals!`} />
-        <Button text="Create New Goal" onClick={handleGoalPopupOpen} />
+        <Button text="Create a New Goal" onClick={handleGoalPopupOpen} />
       </div>
       <div className="exam-goals-wrap" ref={target}>
         {examGoalList?.map((goal) => (

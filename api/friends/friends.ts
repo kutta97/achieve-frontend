@@ -1,4 +1,9 @@
-import { FriendListRq, FriendListRs } from '../../rqrs/friends/friendsRqrs';
+import {
+  AcceptFriendRq,
+  FriendListRq,
+  FriendListRs,
+  FriendRequestListRs,
+} from '../../rqrs/friends/friendsRqrs';
 import api from '../../utils/api';
 
 export const getFriendList = async (rq: FriendListRq) => {
@@ -10,9 +15,9 @@ export const requestFriend = async (id: number) => {
 };
 
 export const getFriendRequestList = async () => {
-  return await api.get<FriendListRs>(`/friends/request`);
+  return await api.get<FriendRequestListRs>(`/friends/request`);
 };
 
-export const acceptFriend = async (rq: FriendListRq) => {
-  return await api.post<FriendListRs>('/friends/', rq);
+export const acceptFriend = async (id: number, rq: AcceptFriendRq) => {
+  return await api.post(`/friends/accept/${id}`, rq);
 };
