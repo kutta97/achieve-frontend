@@ -1,8 +1,13 @@
 import { IFriend } from '@vo/friends/IFriend';
 import { makeObservable, observable } from 'mobx';
 
-import { getFriendList } from '../../api/friends/friends';
-import { FriendListRq, FriendListRs } from '../../rqrs/friends/friendsRqrs';
+import { getFriendList, requestFriend } from '../../api/friends/friends';
+import { AddFriendPopupFormDataType } from '../../fragments/friends/popup/addFriend/AddFriendPopupFormDataType';
+import {
+  FriendListRq,
+  FriendListRs,
+  FriendRequestRq,
+} from '../../rqrs/friends/friendsRqrs';
 
 export class FriendsStore {
   totalFriendCount = 0;
@@ -37,6 +42,18 @@ export class FriendsStore {
       this.totalFriendCount = rs.totalItem;
 
       return this.toFriendListVO(rs);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async requestFriend(requestData: AddFriendPopupFormDataType) {
+    try {
+      const rq: FriendRequestRq = {
+        email: requestData.email,
+      };
+      const data = await requestFriend(rq);
+      return data.ok;
     } catch (e) {
       console.log(e);
     }

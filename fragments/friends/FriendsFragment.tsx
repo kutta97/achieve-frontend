@@ -6,6 +6,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { useFriends } from './hooks/useFriends';
+import { AddFriendPopup } from './popup/addFriend/AddFriendPopup';
 
 export const FriendsFragment = observer(() => {
   const { totalFriendCount, friendList } = useFriends();
@@ -14,6 +15,9 @@ export const FriendsFragment = observer(() => {
 
   const handleAddFriendPopupOpen = () => {
     setIsAddFriendPopupOpen(true);
+  };
+  const handleAddFriendPopupClose = () => {
+    setIsAddFriendPopupOpen(false);
   };
 
   return (
@@ -27,6 +31,10 @@ export const FriendsFragment = observer(() => {
           <FriendItem data={value} key={index} />
         ))}
       </div>
+      <AddFriendPopup
+        isOpen={isAddFriendPopupOpen}
+        onClose={handleAddFriendPopupClose}
+      />
     </FriendsFragmentStyled>
   );
 });

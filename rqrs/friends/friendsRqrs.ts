@@ -3,6 +3,10 @@ export interface FriendListRq {
   pageSize?: number;
 }
 
+export interface FriendRequestRq {
+  email?: string;
+}
+
 export interface FriendItem {
   friendId?: number;
   name?: string;
