@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import { useFriends } from './hooks/useFriends';
 
 export const FriendsFragment = observer(() => {
-  const { friendList } = useFriends();
+  const { totalFriendCount, friendList } = useFriends();
 
   return (
     <FriendsFragmentStyled>
       <div className="top">
-        <Title text="You Have 17 Friends!" />
+        <Title text={`You Have ${totalFriendCount} Friends!`} />
       </div>
       <div className="friends-wrap">
         {friendList?.map((value, index) => (
