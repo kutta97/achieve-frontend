@@ -1,3 +1,4 @@
+import { IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5 } from '@consts/imagePath';
 import { useStores } from '@hooks/useStores';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -56,6 +57,8 @@ export const useSignup = () => {
       return;
     }
     const data = getValues();
+    const imageList = [IMAGE1, IMAGE2, IMAGE3, IMAGE4, IMAGE5];
+    data.image = imageList[Math.floor(Math.random() * 5)] as string;
     await signupStore.signup(data);
   };
 

@@ -13,7 +13,7 @@ export const GroupsFragment = observer(() => {
     <GroupsFragmentStyled>
       <div className="top">
         <Title text="You Have 2 Groups!" />
-        <Button text="Create New Group" />
+        <Button text="Create a New Group" />
       </div>
       <div className="groups-wrap">
         {groupList?.map((value, index) => (
@@ -34,7 +34,11 @@ const GroupsFragmentStyled = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin: -30px -40px 20px -40px;
+    padding: 30px 40px 0 40px;
+    z-index: 2;
+    background: ${({ theme }) => theme.colors.BasicBg};
+    border-radius: 20px;
   }
 
   .groups-wrap {

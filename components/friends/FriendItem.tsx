@@ -1,4 +1,5 @@
 import { Box } from '@components/common/box/Box';
+import { IMAGE2 } from '@consts/imagePath';
 import { IFriend } from '@vo/friends/IFriend';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -12,7 +13,7 @@ export const FriendItem = ({ data }: Props) => {
     <Box>
       <FriendItemStyled>
         <div className="friend-image-wrap">
-          <Image src={data?.imgSrc} alt="" width={70} height={70} />
+          <Image src={data?.imgSrc || IMAGE2} alt="" width={70} height={70} />
         </div>
         <div className="friend-content-wrap">
           <h3>{data?.name}</h3>

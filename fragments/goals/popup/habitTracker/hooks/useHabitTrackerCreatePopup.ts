@@ -10,7 +10,6 @@ export const useHabitTrackerCreatePopup = () => {
   const form = useForm<HabitTrackerCreatePopupFormDataType>({ mode: 'all' });
   const {
     getValues,
-    setValue,
     setFocus,
     trigger,
     formState: { errors },

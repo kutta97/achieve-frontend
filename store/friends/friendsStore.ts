@@ -1,68 +1,114 @@
 import { IFriend } from '@vo/friends/IFriend';
 import { makeObservable, observable } from 'mobx';
 
+import {
+  acceptFriend,
+  getFriendList,
+  getFriendRequestList,
+  requestFriend,
+} from '../../api/friends/friends';
+import { AddFriendPopupFormDataType } from '../../fragments/friends/popup/addFriend/AddFriendPopupFormDataType';
+import {
+  AcceptFriendRq,
+  FriendListRq,
+  FriendListRs,
+  FriendRequestListRs,
+  FriendRequestRq,
+} from '../../rqrs/friends/friendsRqrs';
+
 export class FriendsStore {
-  friendList: IFriend[];
+  totalFriendCount = 0;
+  totalInviteCount = 0;
+  friendList: IFriend[] = [];
+  pendingInvitationList: IFriend[] = [];
 
   constructor() {
     makeObservable(this, {
       friendList: observable,
     });
-    this.loadFriendList();
+    this.initFriendList();
   }
 
-  loadFriendList() {
-    this.getFriendList().then();
+  initFriendList() {
+    this.getFriendList().then((friendList) => {
+      this.friendList = friendList;
+    });
+    this.getFriendRequestList().then((requestList) => {
+      this.pendingInvitationList = requestList;
+    });
   }
 
-  async getFriendList() {
+  loadFriendList(pageNumber: number) {
+    this.getFriendList(pageNumber).then((friendList) => {
+      this.friendList = [...this.friendList, ...friendList];
+    });
+  }
+
+  async getFriendList(pageNumber = 0, pageSize = 10) {
     try {
-      this.friendList = [
-        {
-          id: 1,
-          name: 'MyFriend1',
-          imgSrc: '/assets/test/profile_test1.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-        {
-          id: 2,
-          name: 'MyFriend2',
-          imgSrc: '/assets/test/profile_test2.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-        {
-          id: 3,
-          name: 'MyFriend3',
-          imgSrc: '/assets/test/profile_test3.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-        {
-          id: 4,
-          name: 'MyFriend4',
-          imgSrc: '/assets/test/profile_test.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-        {
-          id: 5,
-          name: 'MyFriend5',
-          imgSrc: '/assets/test/profile_test4.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-        {
-          id: 6,
-          name: 'MyFriend6',
-          imgSrc: '/assets/test/profile_test3.png',
-          description:
-            'hello world! from seoul\n' + 'I wanna be an awsome student.',
-        },
-      ];
+      const rq: FriendListRq = {
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+      };
+      const rs = (await getFriendList(rq)).data;
+      this.totalFriendCount = rs.totalItem;
+
+      return this.toFriendListVO(rs);
     } catch (e) {
       console.log(e);
     }
+  }
+
+  async getFriendRequestList() {
+    try {
+      const rs = (await getFriendRequestList()).data;
+      this.totalInviteCount = rs.totalItem;
+
+      return this.toFriendRequestListVO(rs);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async requestFriend(requestData: AddFriendPopupFormDataType) {
+    try {
+      const rq: FriendRequestRq = {
+        email: requestData.email,
+      };
+      const data = await requestFriend(rq);
+      return data.ok;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async acceptFriend(id: number, accept: boolean) {
+    try {
+      const rq: AcceptFriendRq = {
+        accept: accept,
+      };
+      const data = await acceptFriend(id, rq);
+      return data.ok;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  toFriendListVO(rs?: FriendListRs): IFriend[] {
+    return rs?.content?.map((friend) => ({
+      id: friend.friendId,
+      name: friend.name,
+      imgSrc: friend.imgSrc,
+      description: friend.description,
+    }));
+  }
+
+  toFriendRequestListVO(rs?: FriendRequestListRs): IFriend[] {
+    return rs?.content?.map((friend) => ({
+      id: friend.friendId,
+      name: friend.name,
+      imgSrc: friend.imgSrc,
+      description: friend.description,
+    }));
   }
 }

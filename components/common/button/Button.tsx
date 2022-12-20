@@ -3,10 +3,15 @@ import styled from 'styled-components';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
   text?: string;
+  disabled?: boolean;
 }
 
-export const Button = ({ text, ...props }: Props) => {
-  return <ButtonStyled {...props}>{text}</ButtonStyled>;
+export const Button = ({ text, disabled, ...props }: Props) => {
+  return (
+    <ButtonStyled disabled={disabled} {...props}>
+      {text}
+    </ButtonStyled>
+  );
 };
 
 const ButtonStyled = styled.button<{ width?: number; height?: number }>`
@@ -21,8 +26,11 @@ const ButtonStyled = styled.button<{ width?: number; height?: number }>`
   line-height: 16px;
   color: ${({ theme }) => theme.colors.BasicWhite};
 
-  &:hover {
+  &:hover > {
     color: ${({ theme }) => theme.colors.ShadeGray30};
     background: ${({ theme }) => theme.colors.DarkPurple};
+  }
+  &:disabled {
+    background: ${({ theme }) => theme.colors.ShadeGray30};
   }
 `;
