@@ -23,7 +23,7 @@ export const GroupItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
   ];
 
   const handleClickMenu = () => {
-    onClickMenu?.(data?.groupId, data?.title);
+    onClickMenu?.(data?.groupId);
   };
   const handleSelectMenuItem = (id: string) => {
     onSelectMenu?.(id);
