@@ -6,33 +6,52 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { useFriends } from './hooks/useFriends';
+import { AcceptFriendPopup } from './popup/acceptFriend/AcceptFriendPopup';
 import { AddFriendPopup } from './popup/addFriend/AddFriendPopup';
 
 export const FriendsFragment = observer(() => {
-  const { totalFriendCount, friendList } = useFriends();
+  const { totalFriendCount, totalInviteCount, friendList } = useFriends();
 
-  const [isAddFriendPopupOpen, setIsAddFriendPopupOpen] = useState(false);
+  const [isAcceptPopupOpen, setIsAcceptPopupOpen] = useState(false);
+  const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
 
+  const handleAcceptFriendPopupOpen = () => {
+    setIsAcceptPopupOpen(true);
+  };
+  const handleAcceptFriendPopupClose = () => {
+    setIsAcceptPopupOpen(false);
+  };
   const handleAddFriendPopupOpen = () => {
-    setIsAddFriendPopupOpen(true);
+    setIsAddPopupOpen(true);
   };
   const handleAddFriendPopupClose = () => {
-    setIsAddFriendPopupOpen(false);
+    setIsAddPopupOpen(false);
   };
 
   return (
     <FriendsFragmentStyled>
       <div className="top">
         <Title text={`You Have ${totalFriendCount} Friends!`} />
-        <Button text="Add a Friend" onClick={handleAddFriendPopupOpen} />
+        <span>
+          <Button
+            text={`${totalInviteCount} Pending Invites`}
+            onClick={handleAcceptFriendPopupOpen}
+            disabled={totalInviteCount === 0}
+          />
+          <Button text="Add a Friend" onClick={handleAddFriendPopupOpen} />
+        </span>
       </div>
       <div className="friends-wrap">
         {friendList?.map((value, index) => (
           <FriendItem data={value} key={index} />
         ))}
       </div>
+      <AcceptFriendPopup
+        isOpen={isAcceptPopupOpen}
+        onClose={handleAcceptFriendPopupClose}
+      />
       <AddFriendPopup
-        isOpen={isAddFriendPopupOpen}
+        isOpen={isAddPopupOpen}
         onClose={handleAddFriendPopupClose}
       />
     </FriendsFragmentStyled>
@@ -50,6 +69,11 @@ const FriendsFragmentStyled = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
+
+    span {
+      display: flex;
+      gap: 5px;
+    }
   }
 
   .friends-wrap {

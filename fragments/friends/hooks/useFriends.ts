@@ -11,5 +11,9 @@ export const useFriends = () => {
     friendsStore.friendList && setFriendList(friendsStore.friendList);
   }, [friendsStore.friendList]);
 
-  return { totalFriendCount: friendsStore.totalFriendCount, friendList };
+  return {
+    totalFriendCount: friendsStore.totalFriendCount,
+    totalInviteCount: friendsStore.totalInviteCount,
+    friendList,
+  };
 };

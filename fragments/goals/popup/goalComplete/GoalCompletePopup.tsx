@@ -19,8 +19,8 @@ export const GoalCompletePopup = observer(
     const handleCompleteClick = (achieved?: boolean) => {
       onComplete(goalId, achieved).then((ok) => {
         if (ok) {
-          onClose?.();
           loadGoalList();
+          onClose?.();
         }
       });
     };

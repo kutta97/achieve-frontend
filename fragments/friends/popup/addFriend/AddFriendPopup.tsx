@@ -15,7 +15,7 @@ interface Props {
 export const AddFriendPopup = observer(({ isOpen = false, onClose }: Props) => {
   const { onSubmit, setError, control } = useAddFriendPopup();
 
-  const handleCreateClick = () => {
+  const handleInviteClick = () => {
     onSubmit().then((ok) => {
       if (ok) {
         onClose?.();
@@ -48,7 +48,7 @@ export const AddFriendPopup = observer(({ isOpen = false, onClose }: Props) => {
         <Button
           text="Invite"
           className="submit-button"
-          onClick={handleCreateClick}
+          onClick={handleInviteClick}
         />
       </AddFriendPopupStyled>
     </Modal>
