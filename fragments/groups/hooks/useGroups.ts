@@ -11,5 +11,5 @@ export const useGroups = () => {
     groupsStore.groupList && setGroupList(groupsStore.groupList);
   }, [groupsStore.groupList]);
 
-  return { groupList };
+  return { totalGroupCount: groupsStore.totalGroupCount, groupList };
 };

@@ -25,7 +25,7 @@ export const ExamGoalItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
     },
     {
       id: 'HABIT_TRACKER',
-      value: 'Add habit tracker',
+      value: 'Add a habit tracker',
     },
   ];
 

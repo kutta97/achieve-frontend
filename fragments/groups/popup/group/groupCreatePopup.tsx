@@ -1,51 +1,40 @@
 import { Button } from '@components/common/button/Button';
 import { TextInput } from '@components/common/form/TextInput';
-import { DateInput } from '@components/common/form/goalInput/DateInput';
-import { ScoreInput } from '@components/common/form/goalInput/ScoreInput';
 import { Modal } from '@components/common/modal/Modal';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import { useGoalCreatePopup } from './hooks/useGoalCreatePopup';
+import { useGroupCreatePopup } from './hooks/useGroupCreatePopup';
 
 interface Props {
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-export const GoalCreatePopup = observer(
+export const GroupCreatePopup = observer(
   ({ isOpen = false, onClose }: Props) => {
-    const {
-      handleScoreTypeChange,
-      onSubmit,
-      loadGoalList,
-      startDate,
-      endDate,
-      changeStartDate,
-      changeEndDate,
-      control,
-    } = useGoalCreatePopup();
+    const { onSubmit, loadGroupList, control } = useGroupCreatePopup();
 
     const handleCreateClick = () => {
       onSubmit().then((ok) => {
         if (ok) {
           onClose?.();
-          loadGoalList();
+          loadGroupList();
         }
       });
     };
 
     return (
       <Modal
-        title="Create a New Goal"
+        title="Create a New Group"
         width={638}
         isOpen={isOpen}
         onClose={onClose}
       >
-        <GoalCreatePopupStyled>
+        <GroupCreatePopupStyled>
           <TextInput
-            label="Exam name"
-            name="examTitle"
+            label="Group name"
+            name="name"
             rules={{
               maxLength: {
                 value: 30,
@@ -56,31 +45,18 @@ export const GoalCreatePopup = observer(
             placeholder="write your exam name"
             control={control}
           />
-          <ScoreInput
-            onChangeScoreType={handleScoreTypeChange}
-            control={control}
-          />
-          <span className="label-input-wrap">
-            <Label>Due date</Label>
-            <DateInput
-              startDate={startDate}
-              endDate={endDate}
-              onChangeStartDate={changeStartDate}
-              onChangeEndDate={changeEndDate}
-            />
-          </span>
           <Button
             text="Create"
             className="submit-button"
             onClick={handleCreateClick}
           />
-        </GoalCreatePopupStyled>
+        </GroupCreatePopupStyled>
       </Modal>
     );
   }
 );
 
-export const GoalCreatePopupStyled = styled.form`
+export const GroupCreatePopupStyled = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -113,12 +89,4 @@ export const GoalCreatePopupStyled = styled.form`
     padding: 10px 10px;
     margin-top: 24px;
   }
-`;
-
-const Label = styled.span`
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-
-  color: ${({ theme }) => theme.colors.BasicBlack};
 `;

@@ -1,5 +1,5 @@
 export interface IGroup {
-  id?: number;
+  groupId?: number;
   title?: string;
   members?: IGroupMember[];
   goals?: IGroupGoal[];

@@ -6,15 +6,16 @@ import { Modal } from '@components/common/modal/Modal';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 
-import { useGoalCreatePopup } from './hooks/useGoalCreatePopup';
+import { useGroupGoalCreatePopup } from './hooks/useGroupGoalCreatePopup';
 
 interface Props {
+  groupId?: number;
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-export const GoalCreatePopup = observer(
-  ({ isOpen = false, onClose }: Props) => {
+export const GroupGoalCreatePopup = observer(
+  ({ groupId, isOpen = false, onClose }: Props) => {
     const {
       handleScoreTypeChange,
       onSubmit,
@@ -24,10 +25,10 @@ export const GoalCreatePopup = observer(
       changeStartDate,
       changeEndDate,
       control,
-    } = useGoalCreatePopup();
+    } = useGroupGoalCreatePopup();
 
     const handleCreateClick = () => {
-      onSubmit().then((ok) => {
+      onSubmit(groupId).then((ok) => {
         if (ok) {
           onClose?.();
           loadGoalList();
@@ -37,12 +38,12 @@ export const GoalCreatePopup = observer(
 
     return (
       <Modal
-        title="Create a New Goal"
+        title="Create a New Group Goal"
         width={638}
         isOpen={isOpen}
         onClose={onClose}
       >
-        <GoalCreatePopupStyled>
+        <GroupGoalCreatePopupStyled>
           <TextInput
             label="Exam name"
             name="examTitle"
@@ -74,13 +75,13 @@ export const GoalCreatePopup = observer(
             className="submit-button"
             onClick={handleCreateClick}
           />
-        </GoalCreatePopupStyled>
+        </GroupGoalCreatePopupStyled>
       </Modal>
     );
   }
 );
 
-export const GoalCreatePopupStyled = styled.form`
+export const GroupGoalCreatePopupStyled = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;

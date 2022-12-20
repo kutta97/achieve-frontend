@@ -1,15 +1,34 @@
 import { Box } from '@components/common/box/Box';
+import {
+  OptionMenu,
+  OptionMenuItem,
+} from '@components/common/select/OptionMenu';
 import { BulletColor, BulletTitle } from '@components/common/text/BulletTitle';
 import { GroupExamGoalList } from '@components/groups/GroupExamGoalList';
 import { IGroup } from '@vo/groups/IGroup';
-import Image from 'next/image';
 import styled from 'styled-components';
 
 interface Props {
   data?: IGroup;
+  onClickMenu?: (groupId: number) => void;
+  onSelectMenu?: (menuId: string) => void;
 }
 
-export const GroupItem = ({ data }: Props) => {
+export const GroupItem = ({ data, onClickMenu, onSelectMenu }: Props) => {
+  const optionMenuList: OptionMenuItem[] = [
+    {
+      id: 'GROUP_GOAL',
+      value: 'Add a Group Goal',
+    },
+  ];
+
+  const handleClickMenu = () => {
+    onClickMenu?.(data?.groupId);
+  };
+  const handleSelectMenuItem = (id: string) => {
+    onSelectMenu?.(id);
+  };
+
   return (
     <Box>
       <GroupItemStyled>
@@ -18,11 +37,11 @@ export const GroupItem = ({ data }: Props) => {
             <BulletTitle text={data?.title} bulletColor={BulletColor.BLUE} />
           </div>
           <div className="right">
-            <Image
-              src="/assets/icon/menu/icon_menu_vertical.svg"
-              alt=""
-              width={28}
-              height={28}
+            <OptionMenu
+              className="option_menu"
+              optionList={optionMenuList}
+              onClickMenu={handleClickMenu}
+              onSelectItem={handleSelectMenuItem}
             />
           </div>
         </div>
